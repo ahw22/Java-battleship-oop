@@ -1,5 +1,6 @@
 package org.example;
 
+
 public class Board {
     private Field[][] fields;
 
@@ -20,17 +21,29 @@ public class Board {
     public void printBoard() {
         printInBetweenLine();
         //draw fields
+        System.out.println("|   | A | B | C | D | E | F | G | H | I | J |");
+        printInBetweenLine();
+        int row = 0;
         for (Field[] rows : fields) {
-            System.out.print("| ");
+            System.out.print("| "+ row +" ");
             for (Field column : rows) {
-                System.out.print(column + " | ");
+                System.out.print(column);
             }
-            System.out.println();
+            System.out.println("|");
             printInBetweenLine();
+            row++;
         }
     }
 
+    public boolean checkShipPosIsValid(Position pos) {
+        Field targetField = fields[pos.getRow()][pos.getCol()];
+        if (!targetField.isValidShipPlacement()) {
+            return false;
+        }
+        return true;
+    }
+
     private static void printInBetweenLine() {
-        System.out.println("+" + "---+".repeat(10));
+        System.out.println("+---+" + "---+".repeat(10));
     }
 }

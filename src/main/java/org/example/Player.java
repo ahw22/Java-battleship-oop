@@ -11,5 +11,19 @@ public class Player {
         this.ships = new ArrayList<>();
         this.init = new RandomInit();
         this.board = init.initBoard(this);
+        ships.add(new Carrier());
+        for (int i = 0; i < 2; i++) {
+            ships.add(new Battleship());
+        }
+        for (int i = 0; i < 3; i++) {
+            ships.add(new Destroyer());
+        }
+        for (int i = 0; i < 4; i++) {
+            ships.add(new Submarine());
+        }
+    }
+
+    public ArrayList<Ship> getShips() {
+        return ships;
     }
 }

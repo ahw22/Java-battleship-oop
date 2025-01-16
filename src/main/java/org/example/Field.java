@@ -13,9 +13,17 @@ public class Field {
 
     public String toString() {
         if (shipPart != null) {
-            return shipPart.toString();
+            return "| " + shipPart.toString();
         } else {
-            return state.toString();
+            return "| " + state.toString() + " ";
         }
+    }
+
+    public boolean isValidShipPlacement() {
+        return validShipPlacement;
+    }
+
+    public void setValidShipPlacement(boolean validShipPlacement) {
+        this.validShipPlacement = validShipPlacement;
     }
 }

@@ -8,8 +8,16 @@ public class ShipPart {
         this.hit = false;
         this.ship = ship;
     }
-
+/*
     public String toString() {
         return ship.toString();
+    }
+*/
+    @Override
+    public String toString() {
+        return "ShipPart{" +
+                "hit=" + hit +
+                ", ship=" + ship +
+                '}';
     }
 }
