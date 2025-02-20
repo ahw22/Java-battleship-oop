@@ -15,11 +15,9 @@ public class UserInputHandler {
         while (true) {
             try {
                 String input = getUserInput("Enter a Position using the Format: {Column}{Number} eg.: D3");
-                result = getCoordsFromString(input);
+                result = getCoordinatesFromString(input);
                 break;
-            } catch (ArithmeticException e) {
-                System.out.println(e.getMessage());
-            } catch (IllegalArgumentException e) {
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -33,7 +31,7 @@ public class UserInputHandler {
         return scanner.nextLine();
     }
 
-    private int[] getCoordsFromString(String input) {
+    private int[] getCoordinatesFromString(String input) {
         input = input.toUpperCase();
 
         // Ensure input is at least 2 characters long

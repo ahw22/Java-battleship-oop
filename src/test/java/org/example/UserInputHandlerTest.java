@@ -29,7 +29,7 @@ class UserInputHandlerTest {
         InputStream inputStream = new ByteArrayInputStream(simulatedInput.getBytes());
         UserInputHandler userInputHandler = new UserInputHandler(inputStream);
 
-        String output = captureOutput(() -> userInputHandler.getPosFromUser());
+        String output = captureOutput(userInputHandler::getPosFromUser);
 
         assertTrue(output.contains("Only use letters A through J for your Column."));
     }
@@ -40,7 +40,7 @@ class UserInputHandlerTest {
         InputStream inputStream = new ByteArrayInputStream(simulatedInput.getBytes());
         UserInputHandler userInputHandler = new UserInputHandler(inputStream);
 
-        String output = captureOutput(() -> userInputHandler.getPosFromUser());
+        String output = captureOutput(userInputHandler::getPosFromUser);
 
         assertTrue(output.contains("Only use a single digit (0-9) for your Row."));
     }
@@ -51,7 +51,7 @@ class UserInputHandlerTest {
         InputStream inputStream = new ByteArrayInputStream(simulatedInput.getBytes());
         UserInputHandler userInputHandler = new UserInputHandler(inputStream);
 
-        String output = captureOutput(() -> userInputHandler.getPosFromUser());
+        String output = captureOutput(userInputHandler::getPosFromUser);
 
         assertTrue(output.contains("Input is too short! Please enter a letter followed by a single digit."));
     }
@@ -62,7 +62,7 @@ class UserInputHandlerTest {
         InputStream inputStream = new ByteArrayInputStream(simulatedInput.getBytes());
         UserInputHandler userInputHandler = new UserInputHandler(inputStream);
 
-        String output = captureOutput(() -> userInputHandler.getPosFromUser());
+        String output = captureOutput(userInputHandler::getPosFromUser);
 
         assertTrue(output.contains("Only use letters A through J for your Column."));
     }
