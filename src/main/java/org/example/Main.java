@@ -5,6 +5,7 @@ public class Main {
         Board board = new Board();
         board.printBoard();
         Player player1 = new Player();
-        UserInputHandler.getPosFromUser();
+        UserInputHandler inputHandler = new UserInputHandler(System.in);
+        inputHandler.getPosFromUser();
     }
 }

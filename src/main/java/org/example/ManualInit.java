@@ -1,5 +1,8 @@
 package org.example;
 
+import org.example.model.Destroyer;
+import org.example.model.Ship;
+
 public class ManualInit implements BoardInitializer {
 
     public Board initBoard(Player player) {

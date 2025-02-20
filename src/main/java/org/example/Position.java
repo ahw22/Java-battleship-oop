@@ -3,11 +3,11 @@ package org.example;
 import java.util.Random;
 
 public class Position {
-    private Random rand = new Random();
     private int row;
     private int col;
 
     public Position() {
+        Random rand = new Random();
         this.row = rand.nextInt(0, 10);
         this.col = rand.nextInt(0, 10);
     }
@@ -17,18 +17,11 @@ public class Position {
         this.col = y;
     }
 
-    public Position(String string) {
-        String[] parts = string.split(",");
-        char x = parts[0].charAt(0);
-        this.row = Integer.parseInt(parts[1]);
-        this.col = x - 'A' + 1;
-    }
-
     public int getRow() {
         return row;
     }
 
-    public int getCol() {
+    public int getColumn() {
         return col;
     }
 

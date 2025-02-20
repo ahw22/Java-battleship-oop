@@ -1,5 +1,8 @@
 package org.example;
 
+import org.example.model.Carrier;
+import org.example.model.Ship;
+
 import java.util.ArrayList;
 import java.util.List;
 

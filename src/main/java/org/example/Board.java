@@ -36,7 +36,7 @@ public class Board {
     }
 
     public boolean checkShipPosIsValid(Position pos) {
-        Field targetField = fields[pos.getRow()][pos.getCol()];
+        Field targetField = fields[pos.getRow()][pos.getColumn()];
         if (!targetField.isValidShipPlacement()) {
             return false;
         }

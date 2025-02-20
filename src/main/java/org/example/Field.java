@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.model.ShipPart;
+
 public class Field {
     private State state;
     private ShipPart shipPart;
