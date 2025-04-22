@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.input.UserInputHandler;
+import org.example.model.board.Position;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;

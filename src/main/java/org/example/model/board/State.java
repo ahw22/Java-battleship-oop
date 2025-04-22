@@ -1,4 +1,4 @@
-package org.example;
+package org.example.model.board;
 
 public enum State {
     HIT, MISS, NONE;

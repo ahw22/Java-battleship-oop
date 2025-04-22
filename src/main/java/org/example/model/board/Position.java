@@ -1,10 +1,10 @@
-package org.example;
+package org.example.model.board;
 
 import java.util.Random;
 
 public class Position {
-    private int row;
-    private int col;
+    private final int row;
+    private final int col;
 
     public Position() {
         Random rand = new Random();
@@ -12,9 +12,9 @@ public class Position {
         this.col = rand.nextInt(0, 10);
     }
 
-    public Position(int x, int y) {
-        this.row = x;
-        this.col = y;
+    public Position(int col, int row) {
+        this.row = row;
+        this.col = col;
     }
 
     public int getRow() {

@@ -1,26 +1,27 @@
-package org.example;
+package org.example.player.init;
 
-import org.example.model.Carrier;
-import org.example.model.Ship;
+import org.example.model.board.Board;
+import org.example.model.board.Position;
+import org.example.model.ship.Ship;
+import org.example.player.Player;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RandomInit implements BoardInitializer{
+
     @Override
     public Board initBoard(Player player) {
         Board board = new Board();
-        Ship testShip = new Carrier();
-        System.out.println(testShip.toStringLine());
-        placeShip(testShip, board);
-        return null;
+        for (Ship ship : player.getShips()) {
+            placeShip(ship, board);
+        }
+        return board;
     }
 
     public void placeShip(Ship ship, Board board) {
         List<Position> validPositions = new ArrayList<>();
         findValidPosition(validPositions, ship);
-
-
     }
 
     private void findValidPosition(List<Position> validPositions, Ship ship) {
@@ -30,6 +31,5 @@ public class RandomInit implements BoardInitializer{
          */
         int length = ship.getHP();
         Position startPos = new Position();
-
     }
 }
