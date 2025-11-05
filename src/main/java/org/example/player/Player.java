@@ -12,8 +12,8 @@ public class Player {
 
     public Player(BoardInitializer initializer) {
         this.ships = new ArrayList<>();
-        addShips(); // fill the list
-        this.board = initializer.initBoard(this); // initialize AFTER ships exist
+        addShips();
+        this.board = initializer.initBoard(this);
     }
 
     private void addShips() {

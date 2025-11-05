@@ -3,10 +3,10 @@ package org.example.player.init;
 import org.example.input.UserInputHandler;
 import org.example.model.board.Board;
 import org.example.model.board.Position;
-import org.example.model.ship.Destroyer;
 import org.example.model.ship.Ship;
 import org.example.player.Player;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 
@@ -21,9 +21,12 @@ public class ManualInit implements BoardInitializer {
 
     public Board initBoard(Player player) {
         Board board = new Board();
-        Ship testShip = new Destroyer();
+        ArrayList<Ship> ships = player.getShips();
         board.printBoard();
-        placeShip(testShip, board);
+        for (Ship ship : ships) {
+            board.printBoard();
+            placeShip(ship, board);
+        }
         return board;
     }
 
@@ -42,7 +45,7 @@ public class ManualInit implements BoardInitializer {
                 continue;
             }
 
-            int dir = inputHandler.askForDirection(validDirs); // You’d prompt user to choose 0–3
+            int dir = inputHandler.askForDirection(validDirs);
             actuallyPlaceShip(position, dir, ship, board);
             break;
         }
@@ -59,15 +62,15 @@ public class ManualInit implements BoardInitializer {
         return directions;
     }
 
-    private boolean canPlaceInDirection(Position pos, int dir, int length, Board board) {
-        int row = pos.getRow();
-        int col = pos.getColumn();
+    private boolean canPlaceInDirection(Position position, int direction, int length, Board board) {
+        int row = position.getRow();
+        int col = position.getColumn();
 
         for (int i = 0; i < length; i++) {
             int r = row;
             int c = col;
 
-            switch (dir) {
+            switch (direction) {
                 case 0: r -= i; break; // North
                 case 1: c += i; break; // East
                 case 2: r += i; break; // South
