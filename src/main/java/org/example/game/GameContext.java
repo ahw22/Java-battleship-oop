@@ -6,17 +6,22 @@ import org.example.player.Player;
 import java.util.ArrayList;
 
 public class GameContext {
-    private ArrayList<Player> players;
-    private final ArrayList<Board> boards;
-    private Player player;
+    private final Player player1;
+    private final Player player2;
+    private Player currentPlayer;
     private Player opponent;
 
-    public GameContext(ArrayList<Player> players, ArrayList<Board> boards, Player player, Player opponent) {
-        this.players = players;
-        this.boards = boards;
-        this.player = player;
+    public GameContext(Player player1, Player player2, Player currentPlayer, Player opponent) {
+        this.player1 = player1;
+        this.player2 = player2;
+        this.currentPlayer = currentPlayer;
         this.opponent = opponent;
     }
 
-    
+    public void nextTurn() {
+        Player temp = currentPlayer;
+        currentPlayer = opponent;
+        opponent = temp;
+        System.out.println("\n It's " + currentPlayer.getName() + "'s turn!");
+    }
 }
