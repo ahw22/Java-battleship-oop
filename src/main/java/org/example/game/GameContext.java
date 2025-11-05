@@ -31,4 +31,9 @@ public class GameContext {
         System.out.println("\nYour Target Board:");
         currentPlayer.getTargetBoard().print();
     }
+
+    public void quit() {
+        System.out.println("Thanks for playing Battleship!");
+        System.exit(0);
+    }
 }
