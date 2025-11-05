@@ -18,9 +18,16 @@ public class GameContext {
         this.opponent = opponent;
     }
 
+    public boolean fireAt(String coord) {
+        boolean hit = opponent.getOwnBoard().fire(coord);
+        currentPlayer.getTargetBoard().mark(coord, hit);
+        return hit;
+    }
+
     public boolean placeShip(String start, String end) {
         return currentPlayer.getOwnBoard().placeShip(start, end);
     }
+
     public void nextTurn() {
         Player temp = currentPlayer;
         currentPlayer = opponent;
