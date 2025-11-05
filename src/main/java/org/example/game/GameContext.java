@@ -18,6 +18,9 @@ public class GameContext {
         this.opponent = opponent;
     }
 
+    public boolean placeShip(String start, String end) {
+        return currentPlayer.getOwnBoard().placeShip(start, end);
+    }
     public void nextTurn() {
         Player temp = currentPlayer;
         currentPlayer = opponent;
