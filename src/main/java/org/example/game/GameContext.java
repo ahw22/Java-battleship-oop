@@ -24,4 +24,11 @@ public class GameContext {
         opponent = temp;
         System.out.println("\n It's " + currentPlayer.getName() + "'s turn!");
     }
+
+    public void showBoards() {
+        System.out.println(currentPlayer.getName() + " - Your Fleet:");
+        currentPlayer.getOwnBoard().print();
+        System.out.println("\nYour Target Board:");
+        currentPlayer.getTargetBoard().print();
+    }
 }
