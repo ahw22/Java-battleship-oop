@@ -1,33 +1,22 @@
 package org.example.player;
 
+import lombok.Builder;
+import lombok.Getter;
 import org.example.player.init.BoardInitializer;
 import org.example.model.board.Board;
 import org.example.model.ship.*;
 
-import java.util.ArrayList;
-
+@Getter
+@Builder
 public class Player {
-    private final ArrayList<Ship> ships;
-    private final Board board;
+    private final String name;
+    private final Board ownBoard;
+    private final Board targetBoard;
 
-    public Player(BoardInitializer initializer) {
-        this.ships = new ArrayList<>();
-        addShips();
-        this.board = initializer.initBoard(this);
+    public Player(BoardInitializer initializer, String name) {
+        this.ownBoard = initializer.initBoard(this);
+        this.targetBoard = new Board();
+        this.name = name;
     }
 
-    private void addShips() {
-        ships.add(new Carrier());
-        for (int i = 0; i < 2; i++) ships.add(new Battleship());
-        for (int i = 0; i < 3; i++) ships.add(new Destroyer());
-        for (int i = 0; i < 4; i++) ships.add(new Submarine());
-    }
-
-    public ArrayList<Ship> getShips() {
-        return ships;
-    }
-
-    public Board getBoard() {
-        return board;
-    }
 }
