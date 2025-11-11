@@ -1,9 +1,7 @@
 package org.example.game;
 
-import org.example.model.board.Board;
+import org.example.model.board.Position;
 import org.example.player.Player;
-
-import java.util.ArrayList;
 
 public class GameContext {
     private final Player player1;
@@ -18,13 +16,11 @@ public class GameContext {
         this.opponent = opponent;
     }
 
-    public boolean fireAt(String coord) {
-        boolean hit = opponent.getOwnBoard().fire(coord);
-        currentPlayer.getTargetBoard().mark(coord, hit);
-        return hit;
+    public boolean fireAt(Position coord) {
+        return opponent.getOwnBoard().fire(coord);
     }
 
-    public boolean placeShip(String start, String end) {
+    public boolean placeShip(Position start, Position end) {
         return currentPlayer.getOwnBoard().placeShip(start, end);
     }
 
