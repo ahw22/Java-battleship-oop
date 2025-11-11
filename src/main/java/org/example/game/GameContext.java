@@ -33,9 +33,9 @@ public class GameContext {
 
     public void showBoards() {
         System.out.println(currentPlayer.getName() + " - Your Fleet:");
-        currentPlayer.getOwnBoard().print();
+        currentPlayer.getOwnBoard().printBoard();
         System.out.println("\nYour Target Board:");
-        currentPlayer.getTargetBoard().print();
+        currentPlayer.getTargetBoard().printBoard();
     }
 
     public void quit() {
