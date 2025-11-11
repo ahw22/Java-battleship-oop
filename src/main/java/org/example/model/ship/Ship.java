@@ -10,8 +10,8 @@ public class Ship {
      protected int HP;
      protected ArrayList<Field> fields;
 
-     public int getHP() {
-          return HP;
+    public void hit() {
+         HP--;
      }
 
      public String draw() {
