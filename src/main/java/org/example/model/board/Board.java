@@ -61,6 +61,17 @@ public class Board {
         return !targetField.isOccupied();
     }
 
+    public boolean fire(Position pos) {
+        Field targetField = fields[pos.getRow()][pos.getColumn()];
+        if(targetField.isOccupied()) {
+            targetField.markHit();
+            targetField.getShip().hit();
+            return true;
+        }
+        targetField.markMiss();
+        return false;
+    }
+
     private static void printInBetweenLine() {
         System.out.println("+---+" + "---+".repeat(10));
     }
