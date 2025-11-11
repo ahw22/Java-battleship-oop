@@ -76,15 +76,12 @@ public class Board {
         System.out.println("+---+" + "---+".repeat(10));
     }
 
-    public int getSize() {
-        return size;
-    }
-
-    public Field getField(int column, int row) {
-        return fields[row][column];
-    }
-
     public Field getFieldFromPosition(Position position) {
         return fields[position.getRow()][position.getColumn()];
+    }
+
+    public boolean placeShip(Position start, Position end) {
+        
+        return false;
     }
 }
