@@ -1,11 +1,12 @@
 package org.example.commands;
 
 import org.example.game.GameContext;
+import org.example.model.board.Position;
 
 public class FireCommand implements Command {
-    private final String target;
+    private final Position target;
 
-    public FireCommand(String target) {
+    public FireCommand(Position target) {
         this.target = target;
     }
 
