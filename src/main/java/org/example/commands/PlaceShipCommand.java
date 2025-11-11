@@ -1,12 +1,13 @@
 package org.example.commands;
 
 import org.example.game.GameContext;
+import org.example.model.board.Position;
 
 public class PlaceShipCommand implements Command {
-    private final String start;
-    private final String end;
+    private final Position start;
+    private final Position end;
 
-    public PlaceShipCommand(String start, String end) {
+    public PlaceShipCommand(Position start, Position end) {
         this.start = start;
         this.end = end;
     }
