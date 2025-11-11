@@ -1,10 +1,13 @@
 package org.example.model.board;
 
 
+import lombok.Getter;
 import org.example.model.ship.Ship;
 
 public class Field {
+    @Getter
     private State state;
+    @Getter
     private Ship ship;
     private final Position position;
 
@@ -17,8 +20,6 @@ public class Field {
     public String draw() {
         if (ship != null)
             return "| " + ship.draw() + " ";
-        else if (state == State.HIT)
-            return "| X ";
         else if (state == State.MISS)
             return "| O ";
         else
@@ -43,10 +44,6 @@ public class Field {
 
     public void markMiss() {
         state = State.MISS;
-    }
-
-    public State getState() {
-        return state;
     }
 
 }
