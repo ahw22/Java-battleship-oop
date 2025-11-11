@@ -1,8 +1,11 @@
 package org.example.model.board;
 
 
+import lombok.Getter;
+
 public class Board {
     private final Field[][] fields;
+    @Getter
     private final int size = 10;
 
     public Board() {
