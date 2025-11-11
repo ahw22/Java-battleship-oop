@@ -18,7 +18,9 @@ public class Field {
     }
 
     public String draw() {
-        if (ship != null)
+        if (state == State.HIT)
+            return "| X ";
+        else if (ship != null)
             return "| " + ship.draw() + " ";
         else if (state == State.MISS)
             return "| O ";
