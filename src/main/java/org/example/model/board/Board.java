@@ -2,6 +2,8 @@ package org.example.model.board;
 
 
 import lombok.Getter;
+import org.example.model.ship.Ship;
+import org.example.player.Player;
 
 public class Board {
     private final Field[][] fields;
@@ -80,8 +82,26 @@ public class Board {
         return fields[position.getRow()][position.getColumn()];
     }
 
-    public boolean placeShip(Position start, Position end) {
-        
-        return false;
+    public boolean placeShip(Position start, Position end, Player player) {
+        Ship ship = player.getShipsToPlace().peek();
+        int distanceRows = end.getRow() - start.getRow();
+        int distanceCol = end.getColumn() - start.getColumn();
+        if (distanceRows > 0 && distanceCol == 0) {
+            for (int i = 0; i < distanceRows; i++) {
+                Field target = fields[start.getRow() + i][start.getColumn()];
+                target.placeShip(ship);
+            }
+            player.getShipsToPlace().poll();
+            return true;
+        } else if (distanceCol > 0 && distanceRows == 0) {
+            for (int i = 0; i < distanceCol; i++) {
+                Field target = fields[start.getRow()][start.getColumn() + i];
+                target.placeShip(ship);
+            }
+            player.getShipsToPlace().poll();
+            return true;
+        } else {
+            return false;
+        }
     }
 }
