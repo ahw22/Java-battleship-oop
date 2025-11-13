@@ -21,7 +21,7 @@ public class GameContext {
     }
 
     public boolean placeShip(Position start, Position end) {
-        return currentPlayer.getOwnBoard().placeShip(start, end);
+        return currentPlayer.getOwnBoard().placeShip(start, end, currentPlayer);
     }
 
     public void nextTurn() {
