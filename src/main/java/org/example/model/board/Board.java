@@ -84,24 +84,43 @@ public class Board {
 
     public boolean placeShip(Position start, Position end, Player player) {
         Ship ship = player.getShipsToPlace().peek();
-        int distanceRows = end.getRow() - start.getRow();
-        int distanceCol = end.getColumn() - start.getColumn();
-        if (distanceRows > 0 && distanceCol == 0) {
-            for (int i = 0; i < distanceRows; i++) {
-                Field target = fields[start.getRow() + i][start.getColumn()];
+        if (ship == null) return false;
+
+        int shipLength = ship.getHP();
+
+        int dRow = end.getRow() - start.getRow();
+        int dCol = end.getColumn() - start.getColumn();
+
+        // Horizontal placement
+        if (dRow == 0 && Math.abs(dCol) + 1 == shipLength) {
+            int step = dCol > 0 ? 1 : -1;
+            for (int i = 0; i < shipLength; i++) {
+                Field target = fields[start.getRow()][start.getColumn() + i * step];
+                if (target.isOccupied()) return false; // Optional collision check
+            }
+            for (int i = 0; i < shipLength; i++) {
+                Field target = fields[start.getRow()][start.getColumn() + i * step];
                 target.placeShip(ship);
             }
             player.getShipsToPlace().poll();
             return true;
-        } else if (distanceCol > 0 && distanceRows == 0) {
-            for (int i = 0; i < distanceCol; i++) {
-                Field target = fields[start.getRow()][start.getColumn() + i];
+
+            // Vertical placement
+        } else if (dCol == 0 && Math.abs(dRow) + 1 == shipLength) {
+            int step = dRow > 0 ? 1 : -1;
+            for (int i = 0; i < shipLength; i++) {
+                Field target = fields[start.getRow() + i * step][start.getColumn()];
+                if (target.isOccupied()) return false;
+            }
+            for (int i = 0; i < shipLength; i++) {
+                Field target = fields[start.getRow() + i * step][start.getColumn()];
                 target.placeShip(ship);
             }
             player.getShipsToPlace().poll();
             return true;
-        } else {
-            return false;
         }
+
+        return false;
     }
+
 }
