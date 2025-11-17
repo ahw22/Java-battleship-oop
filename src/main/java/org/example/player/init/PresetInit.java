@@ -9,8 +9,8 @@ import org.example.player.Player;
 public class PresetInit implements BoardInitializer{
     private Board board;
 
-    public PresetInit(Board board) {
-        this.board = board;
+    public PresetInit() {
+        this.board = new Board();
     }
 
     @Override
@@ -18,8 +18,8 @@ public class PresetInit implements BoardInitializer{
         while (!player.getShipsToPlace().isEmpty()) {
         Ship peek = player.getShipsToPlace().peek();
         char targetRow = (char) ('A' + peek.getHP());
-        String start = String.valueOf(targetRow + 1);
-        String end = String.valueOf(targetRow + peek.getHP());
+        String start = "" +targetRow + '1';
+        String end = "" + targetRow + peek.getHP();
         board.placeShip(convertStringToPosition(start), convertStringToPosition(end), player);
         }
         board.printBoard();
@@ -29,7 +29,7 @@ public class PresetInit implements BoardInitializer{
     private Position convertStringToPosition(String input) {
         input = input.toUpperCase();
 
-        if (input.length() == 2) {
+        if (input.length() != 2) {
             throw new IllegalArgumentException("Input is invalid length! Please enter a letter followed by a single digit.");
         }
 
