@@ -9,11 +9,11 @@ public class GameContext {
     private Player currentPlayer;
     private Player opponent;
 
-    public GameContext(Player player1, Player player2, Player currentPlayer, Player opponent) {
+    public GameContext(Player player1, Player player2) {
         this.player1 = player1;
         this.player2 = player2;
-        this.currentPlayer = currentPlayer;
-        this.opponent = opponent;
+        this.currentPlayer = player1;
+        this.opponent = player2;
     }
 
     public boolean fireAt(Position coord) {
