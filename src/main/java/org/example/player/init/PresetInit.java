@@ -22,7 +22,6 @@ public class PresetInit implements BoardInitializer{
         String end = "" + targetRow + peek.getHP();
         board.placeShip(convertStringToPosition(start), convertStringToPosition(end), player);
         }
-        board.printBoard();
         return board;
     }
 
