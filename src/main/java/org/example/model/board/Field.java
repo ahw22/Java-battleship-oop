@@ -29,7 +29,9 @@ public class Field {
     }
 
     public String drawCoordinates() {
-        return "|" + (char) (position.getColumn() + 'A') + position.getRow() + " ";
+        if (state == State.HIT) return "| X ";
+        else if (state == State.MISS) return "| 0 ";
+        else return "|" + (char) (position.getRow() + 'A') + position.getColumn() + " ";
     }
 
     public boolean isOccupied() {
