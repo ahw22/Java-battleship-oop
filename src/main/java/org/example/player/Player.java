@@ -2,6 +2,7 @@ package org.example.player;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import org.example.player.init.BoardInitializer;
 import org.example.model.board.Board;
 import org.example.model.ship.*;
@@ -14,12 +15,13 @@ import java.util.Queue;
 public class Player {
     private final String name;
     private final Board ownBoard;
-    private final Board targetBoard;
+    @Setter
+    private Board targetBoard;
     private final List<Ship> ships;
     private final Queue<Ship> shipsToPlace = new LinkedList<>();
 
     public Player(BoardInitializer initializer, String name) {
-        this.targetBoard = new Board();
+        this.targetBoard = null;
         this.name = name;
         this.ships = List.of(new Battleship(), new Carrier(), new Destroyer(), new Submarine());
         shipsToPlace.addAll(ships);
