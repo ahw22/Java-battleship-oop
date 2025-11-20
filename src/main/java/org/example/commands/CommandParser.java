@@ -25,10 +25,10 @@ public class CommandParser {
 
     }
 
-    private Position convertStringToPosition(String input) {
+    public Position convertStringToPosition(String input) {
         input = input.toUpperCase();
 
-        if (input.length() == 2) {
+        if (input.length() != 2) {
             throw new IllegalArgumentException("Input is invalid length! Please enter a letter followed by a single digit.");
         }
 
@@ -49,6 +49,6 @@ public class CommandParser {
             throw new ArithmeticException("Only use letters A through J for your Column.");
         }
 
-        return new Position(row, column);
+        return new Position(column, row);
     }
 }
