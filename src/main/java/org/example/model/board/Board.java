@@ -5,6 +5,9 @@ import lombok.Getter;
 import org.example.model.ship.Ship;
 import org.example.player.Player;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Board {
     private final Field[][] fields;
     @Getter
@@ -19,7 +22,7 @@ public class Board {
         //initialize each index with a field
         for (int i = 0; i < fields.length; i++) {
             for (int j = 0; j < fields[1].length; j++) {
-                fields[i][j] = new Field(new Position(i,j));
+                fields[i][j] = new Field(new Position(i, j));
             }
         }
     }
@@ -31,7 +34,7 @@ public class Board {
         printInBetweenLine();
         int row = 0;
         for (Field[] rows : fields) {
-            System.out.print("| "+ row +" ");
+            System.out.print("| " + row + " ");
             for (Field column : rows) {
                 System.out.print(column.draw());
             }
@@ -48,7 +51,7 @@ public class Board {
         printInBetweenLine();
         int row = 0;
         for (Field[] rows : fields) {
-            System.out.print("| "+ row +" ");
+            System.out.print("| " + row + " ");
             for (Field column : rows) {
                 System.out.print(column.drawCoordinates());
             }
@@ -65,7 +68,7 @@ public class Board {
 
     public boolean fire(Position pos) {
         Field targetField = fields[pos.getRow()][pos.getColumn()];
-        if(targetField.isOccupied()) {
+        if (targetField.isOccupied()) {
             targetField.markHit();
             targetField.getShip().hit();
             return true;
@@ -83,44 +86,62 @@ public class Board {
     }
 
     public boolean placeShip(Position start, Position end, Player player) {
-        Ship ship = player.getShipsToPlace().peek();
-        if (ship == null) return false;
+        Ship shipToPlace = player.getShipsToPlace().peek();
+        if (shipToPlace == null) return false;
 
-        int shipLength = ship.getHP();
+        int shipLength = shipToPlace.getHP();
 
-        int dRow = end.getRow() - start.getRow();
-        int dCol = end.getColumn() - start.getColumn();
+        List<Position> positionList = getListOfPositionsBetweenPositions(start, end, shipLength);
 
-        // Horizontal placement
-        if (dRow == 0 && Math.abs(dCol) + 1 == shipLength) {
-            int step = dCol > 0 ? 1 : -1;
-            for (int i = 0; i < shipLength; i++) {
-                Field target = fields[start.getRow()][start.getColumn() + i * step];
-                if (target.isOccupied()) return false; // Optional collision check
+        for (Position position : positionList) {
+            if (!checkShipPosIsValid(position)) {
+                throw new IllegalArgumentException("One of the fields is already occupied! Field: " + position);
             }
-            for (int i = 0; i < shipLength; i++) {
-                Field target = fields[start.getRow()][start.getColumn() + i * step];
-                target.placeShip(ship);
-            }
-            player.getShipsToPlace().poll();
-            return true;
-
-            // Vertical placement
-        } else if (dCol == 0 && Math.abs(dRow) + 1 == shipLength) {
-            int step = dRow > 0 ? 1 : -1;
-            for (int i = 0; i < shipLength; i++) {
-                Field target = fields[start.getRow() + i * step][start.getColumn()];
-                if (target.isOccupied()) return false;
-            }
-            for (int i = 0; i < shipLength; i++) {
-                Field target = fields[start.getRow() + i * step][start.getColumn()];
-                target.placeShip(ship);
-            }
-            player.getShipsToPlace().poll();
-            return true;
+            Field target = getFieldFromPosition(position);
+            target.placeShip(shipToPlace);
         }
 
-        return false;
+        return true;
+    }
+
+
+    private List<Position> getListOfPositionsBetweenPositions(Position start, Position end, int shipLength) {
+        if (!isStraightLine(start, end)) {
+            throw new IllegalArgumentException("Line between start and end has to be horizontal or vertical!");
+        }
+
+        int length = getDistance(start, end) + 1;
+        if (length != shipLength) {
+            throw new IllegalArgumentException("Start and end positions given are longer than the ship being placed.");
+        }
+
+        List<Position> positionList = new ArrayList<>(shipLength);
+
+        int dRow = Integer.compare(end.getRow(), start.getRow());     // -1, 0, or 1
+        int dCol = Integer.compare(end.getColumn(), start.getColumn()); // -1, 0, or 1
+
+        for (int i = 0; i < shipLength; i++) {
+            int row = start.getRow() + i * dRow;
+            int col = start.getColumn() + i * dCol;
+            positionList.add(new Position(col, row));
+        }
+
+        if (positionList.size() != shipLength) {
+            throw new RuntimeException("List of positions to place ship in is longer than ship!");
+        }
+
+        return positionList;
+    }
+
+    private int getDistance(Position a, Position b) {
+        return Math.max(
+                Math.abs(a.getRow() - b.getRow()),
+                Math.abs(a.getColumn() - b.getColumn())
+        );
+    }
+
+    private boolean isStraightLine(Position start, Position end) {
+        return start.getColumn() == end.getColumn() || start.getRow() == end.getRow();
     }
 
 }
