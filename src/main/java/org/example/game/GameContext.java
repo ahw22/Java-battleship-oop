@@ -1,8 +1,10 @@
 package org.example.game;
 
+import lombok.Getter;
 import org.example.model.board.Position;
 import org.example.player.Player;
 
+@Getter
 public class GameContext {
     private final Player player1;
     private final Player player2;
