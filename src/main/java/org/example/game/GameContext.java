@@ -35,7 +35,13 @@ public class GameContext {
         Player temp = currentPlayer;
         currentPlayer = opponent;
         opponent = temp;
-        System.out.println("\n It's " + currentPlayer.getName() + "'s turn!");
+        System.out.println("\nIt's " + currentPlayer.getName() + "'s turn!\n");
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        showTarget();
     }
 
     public void showTarget() {
