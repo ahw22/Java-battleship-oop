@@ -33,12 +33,16 @@ public class GameContext {
         System.out.println("\n It's " + currentPlayer.getName() + "'s turn!");
     }
 
-    public void showBoards() {
-        System.out.println(currentPlayer.getName() + " - Your Fleet:");
-        currentPlayer.getOwnBoard().printBoard();
+    public void showTarget() {
         System.out.println("\nYour Target Board:");
         currentPlayer.getTargetBoard().printBoardWithCoordinates();
     }
+
+    public void showOwnBoard() {
+        System.out.println(currentPlayer.getName() + " - Your Fleet:");
+        currentPlayer.getOwnBoard().printBoard();
+    }
+
 
     public void quit() {
         System.out.println("Thanks for playing Battleship!");
