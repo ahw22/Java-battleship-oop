@@ -20,6 +20,7 @@ public class CommandParser {
 
             case "show" -> new ShowCommand();
             case "quit" -> new QuitCommand();
+            case "help" -> new HelpCommand();
             default -> new UnknownCommand(input);
         };
 
