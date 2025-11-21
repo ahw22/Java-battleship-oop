@@ -2,6 +2,7 @@ package org.example.player.init;
 
 import org.example.commands.CommandParser;
 import org.example.model.board.Board;
+import org.example.model.board.Position;
 import org.example.model.ship.Ship;
 import org.example.player.Player;
 
@@ -16,12 +17,14 @@ public class PresetInit implements BoardInitializer {
 
     @Override
     public Board initBoard(Player player) {
+        int rowCounter = 1;
         while (!player.getShipsToPlace().isEmpty()) {
             Ship peek = player.getShipsToPlace().peek();
-            char targetRow = (char) ('A' + peek.getHP());
-            String start = "" + targetRow + '1';
-            String end = "" + targetRow + peek.getHP();
-            board.placeShip(commandParser.convertStringToPosition(start), commandParser.convertStringToPosition(end), player);
+            Position start = new Position(1, rowCounter);
+            Position end = new Position(1 + peek.getHP() - 1, rowCounter);
+            board.placeShip(start, end, player);
+            rowCounter++;
+            player.getShipsToPlace().poll();
         }
         return board;
     }
