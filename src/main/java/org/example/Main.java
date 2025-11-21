@@ -3,7 +3,6 @@ package org.example;
 import org.example.commands.Command;
 import org.example.commands.CommandParser;
 import org.example.game.GameContext;
-import org.example.model.board.Position;
 import org.example.player.Player;
 import org.example.player.init.PresetInit;
 
@@ -22,6 +21,7 @@ public class Main {
 
         System.out.println("Welcome to Battleship!");
         System.out.println("Type 'help' for commands.");
+        context.showTarget();
 
         while(true) {
             System.out.print(context.getCurrentPlayer().getName() + "> ");
@@ -35,13 +35,10 @@ public class Main {
 
             cmd.execute(context);
 
-/*
             if (context.isGameOver()) {
                 context.gameOver();
                 break;
             }
-*/
-
         }
     }
 }
