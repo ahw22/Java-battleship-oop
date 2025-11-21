@@ -23,7 +23,7 @@ public class Player {
     public Player(BoardInitializer initializer, String name) {
         this.targetBoard = null;
         this.name = name;
-        this.ships = List.of(new Battleship(), new Carrier(), new Destroyer(), new Submarine());
+        this.ships = List.of(new Carrier(), new Battleship(), new Destroyer(), new Submarine());
         shipsToPlace.addAll(ships);
         this.ownBoard = initializer.initBoard(this);
     }

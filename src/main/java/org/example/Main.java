@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Player player1 = new Player(new PresetInit(), "User");
+        Player player1 = new Player(new PresetInit(), "Player");
         Player player2 = new Player(new PresetInit(), "CPU");
         player1.setTargetBoard(player2.getOwnBoard());
         player2.setTargetBoard(player1.getOwnBoard());
