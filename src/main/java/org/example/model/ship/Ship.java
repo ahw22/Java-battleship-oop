@@ -5,7 +5,7 @@ import org.example.model.board.Field;
 
 import java.util.ArrayList;
 
-public class Ship {
+public abstract class Ship {
      @Getter
      protected int HP;
      protected ArrayList<Field> fields;
