@@ -77,10 +77,6 @@ public class Board {
         return false;
     }
 
-    private static void printInBetweenLine() {
-        System.out.println("+---+" + "---+".repeat(10));
-    }
-
     public Field getFieldFromPosition(Position position) {
         return fields[position.getRow()][position.getColumn()];
     }
@@ -127,21 +123,22 @@ public class Board {
         }
 
         if (positionList.size() != shipLength) {
-            throw new RuntimeException("List of positions to place ship in is longer than ship!");
+            throw new IllegalArgumentException("List of positions to place ship in is longer than ship!");
         }
 
         return positionList;
     }
 
     private int getDistance(Position a, Position b) {
-        return Math.max(
-                Math.abs(a.getRow() - b.getRow()),
-                Math.abs(a.getColumn() - b.getColumn())
-        );
+        return Math.max(Math.abs(a.getRow() - b.getRow()), Math.abs(a.getColumn() - b.getColumn()));
     }
 
     private boolean isStraightLine(Position start, Position end) {
         return start.getColumn() == end.getColumn() || start.getRow() == end.getRow();
+    }
+
+    private static void printInBetweenLine() {
+        System.out.println("+---+" + "---+".repeat(10));
     }
 
 }
