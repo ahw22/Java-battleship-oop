@@ -8,6 +8,8 @@ import java.util.ArrayList;
 public abstract class Ship {
      @Getter
      protected int HP;
+     @Getter
+     protected String name;
      protected ArrayList<Field> fields;
 
     public void hit() {
