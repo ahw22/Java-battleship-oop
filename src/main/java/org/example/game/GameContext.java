@@ -2,6 +2,7 @@ package org.example.game;
 
 import lombok.Getter;
 import org.example.model.board.Position;
+import org.example.model.ship.Ship;
 import org.example.player.Player;
 
 @Getter
