@@ -19,7 +19,12 @@ public class GameContext {
     }
 
     public boolean fireAt(Position coord) {
-        return opponent.getOwnBoard().fire(coord);
+        boolean hit = opponent.getOwnBoard().fire(coord);
+        if (hit) {
+            Ship damagedShip = opponent.getOwnBoard().getFieldFromPosition(coord).getShip();
+            if (damagedShip.getHP() <= 0) System.out.printf("You sunk your opponents " + damagedShip.getName() + "! ");
+        }
+        return hit;
     }
 
     public boolean placeShip(Position start, Position end) {
@@ -43,6 +48,14 @@ public class GameContext {
         currentPlayer.getOwnBoard().printBoard();
     }
 
+    public boolean isGameOver() {
+        return opponent.getNumberOfSunkShips() == opponent.getShips().size();
+    }
+
+    public void gameOver() {
+        System.out.println(currentPlayer.getName() + " has won the game!");
+        System.exit(0);
+    }
 
     public void quit() {
         System.out.println("Thanks for playing Battleship!");
