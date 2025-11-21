@@ -1,6 +1,5 @@
 package org.example.player;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.player.init.BoardInitializer;
@@ -26,6 +25,13 @@ public class Player {
         this.ships = List.of(new Carrier(), new Battleship(), new Destroyer(), new Submarine());
         shipsToPlace.addAll(ships);
         this.ownBoard = initializer.initBoard(this);
+    }
+
+    public int getNumberOfSunkShips() {
+        long numOfSunkShips = ships.stream()
+                .filter(ship -> ship.getHP() <= 0)
+                .count();
+        return (int) numOfSunkShips;
     }
 
 }
