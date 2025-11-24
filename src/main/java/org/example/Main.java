@@ -23,7 +23,9 @@ public class Main {
         System.out.println("Type 'help' for commands.");
         context.showTarget();
 
-        while(true) {
+        GameRunner runner = new GameRunner(System.in, System.out);
+        runner.run(context, commandParser);
+/*        while(true) {
             System.out.print(context.getCurrentPlayer().getName() + "> ");
             String input = scanner.nextLine();
 
@@ -39,6 +41,6 @@ public class Main {
                 context.gameOver();
                 break;
             }
-        }
+        }*/
     }
 }
