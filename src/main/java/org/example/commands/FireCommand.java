@@ -12,7 +12,13 @@ public class FireCommand implements Command {
 
     @Override
     public void execute(GameContext context) {
-        boolean hit = context.fireAt(target);
+        boolean hit = false;
+        try {
+            hit = context.fireAt(target);
+        } catch (IllegalStateException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
         System.out.println(hit ? "Hit at " + target + "!" : "Miss at " + target + ".");
         context.nextTurn();
     }
