@@ -1,6 +1,5 @@
 package org.example.model.board;
 
-
 import lombok.Getter;
 import org.example.model.ship.Ship;
 import org.example.player.Player;
@@ -19,7 +18,6 @@ public class Board {
     }
 
     private void initFields() {
-        //initialize each index with a field
         for (int i = 0; i < fields.length; i++) {
             for (int j = 0; j < fields[1].length; j++) {
                 fields[i][j] = new Field(new Position(i, j));
@@ -29,7 +27,6 @@ public class Board {
 
     public void printBoard() {
         printInBetweenLine();
-        //draw fields
         System.out.println("|   | A | B | C | D | E | F | G | H | I | J |");
         printInBetweenLine();
         int row = 0;
@@ -46,7 +43,6 @@ public class Board {
 
     public void printBoardWithCoordinates() {
         printInBetweenLine();
-        //draw fields
         System.out.println("|   | A | B | C | D | E | F | G | H | I | J |");
         printInBetweenLine();
         int row = 0;
