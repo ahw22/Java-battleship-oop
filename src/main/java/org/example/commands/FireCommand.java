@@ -20,6 +20,10 @@ public class FireCommand implements Command {
             return;
         }
         System.out.println(hit ? "Hit at " + target + "!" : "Miss at " + target + ".");
+        if (context.isGameOver()) {
+            context.gameOver();
+            return;
+        }
         context.nextTurn();
     }
 

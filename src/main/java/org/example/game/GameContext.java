@@ -37,16 +37,11 @@ public class GameContext {
         currentPlayer = opponent;
         opponent = temp;
         System.out.println("\nIt's " + currentPlayer.getName() + "'s turn!\n");
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
         showTarget();
     }
 
     public void showTarget() {
-        System.out.println("\nYour Target Board:");
+        System.out.println("\nYour Opponents Board:");
         currentPlayer.getTargetBoard().printBoardWithCoordinates();
     }
 
@@ -60,6 +55,7 @@ public class GameContext {
     }
 
     public void gameOver() {
+        showTarget();
         System.out.println(currentPlayer.getName() + " has won the game!");
         System.exit(0);
     }
