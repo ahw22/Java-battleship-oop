@@ -1,18 +1,16 @@
 package org.example.commands;
 
+import lombok.AllArgsConstructor;
 import org.example.game.GameContext;
 import org.example.model.board.Position;
 
+@AllArgsConstructor
 public class FireCommand implements Command {
     private final Position target;
 
-    public FireCommand(Position target) {
-        this.target = target;
-    }
-
     @Override
     public void execute(GameContext context) {
-        boolean hit = false;
+        boolean hit;
         try {
             hit = context.fireAt(target);
         } catch (IllegalStateException e) {

@@ -1,13 +1,11 @@
 package org.example.commands;
 
+import lombok.AllArgsConstructor;
 import org.example.game.GameContext;
 
+@AllArgsConstructor
 public class UnknownCommand implements Command{
     private final String input;
-
-    public UnknownCommand(String input) {
-        this.input = input;
-    }
 
     @Override
     public void execute(GameContext context) {

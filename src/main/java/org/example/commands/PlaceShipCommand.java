@@ -1,16 +1,13 @@
 package org.example.commands;
 
+import lombok.AllArgsConstructor;
 import org.example.game.GameContext;
 import org.example.model.board.Position;
 
+@AllArgsConstructor
 public class PlaceShipCommand implements Command {
     private final Position start;
     private final Position end;
-
-    public PlaceShipCommand(Position start, Position end) {
-        this.start = start;
-        this.end = end;
-    }
 
     @Override
     public void execute(GameContext context) {
