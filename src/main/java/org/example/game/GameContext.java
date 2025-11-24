@@ -23,7 +23,7 @@ public class GameContext {
         boolean hit = opponent.getOwnBoard().fire(coord);
         if (hit) {
             Ship damagedShip = opponent.getOwnBoard().getFieldFromPosition(coord).getShip();
-            if (damagedShip.getHP() <= 0) System.out.printf("You sunk your opponents " + damagedShip.getName() + "! ");
+            if (damagedShip.getHP() <= 0) System.out.printf("You sunk your opponents " + damagedShip.getName() + "!\n");
         }
         return hit;
     }
