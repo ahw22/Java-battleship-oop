@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.commands.CommandParser;
 import org.example.game.GameContext;
+import org.example.game.GameRunner;
 import org.example.player.Player;
 import org.example.player.init.PresetInit;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class MainTest {
 
     @Test
-    void main() {
+    void testFullGame() {
         String input = String.join("\n",
                 "fire B1",
                 "fire A0",
@@ -64,7 +65,8 @@ class MainTest {
         // Now inspect output
         String output = outBytes.toString();
 
-        assertTrue(output.contains("Player has won teh game!"));
+        assertTrue(output.contains("hit"));
+        assertTrue(output.contains("Player has won the game!"));
     }
 
 }

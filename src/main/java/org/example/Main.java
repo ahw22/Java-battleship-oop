@@ -1,8 +1,8 @@
 package org.example;
 
-import org.example.commands.Command;
 import org.example.commands.CommandParser;
 import org.example.game.GameContext;
+import org.example.game.GameRunner;
 import org.example.player.Player;
 import org.example.player.init.PresetInit;
 
@@ -25,22 +25,5 @@ public class Main {
 
         GameRunner runner = new GameRunner(System.in, System.out);
         runner.run(context, commandParser);
-/*        while(true) {
-            System.out.print(context.getCurrentPlayer().getName() + "> ");
-            String input = scanner.nextLine();
-
-            Command cmd = commandParser.parse(input);
-            if (cmd == null) {
-                System.out.println("Unknown command: Type 'help' to see the available options");
-                continue;
-            }
-
-            cmd.execute(context);
-
-            if (context.isGameOver()) {
-                context.gameOver();
-                break;
-            }
-        }*/
     }
 }
