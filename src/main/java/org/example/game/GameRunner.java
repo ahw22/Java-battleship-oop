@@ -1,8 +1,7 @@
-package org.example;
+package org.example.game;
 
 import org.example.commands.Command;
 import org.example.commands.CommandParser;
-import org.example.game.GameContext;
 
 import java.io.InputStream;
 import java.io.PrintStream;
