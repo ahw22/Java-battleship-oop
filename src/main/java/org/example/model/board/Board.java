@@ -2,7 +2,7 @@ package org.example.model.board;
 
 import lombok.Getter;
 import org.example.model.ship.Ship;
-import org.example.player.Player;
+import org.example.player.AbstractPlayer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,7 +80,7 @@ public class Board {
         return fields[position.getRow()][position.getColumn()];
     }
 
-    public boolean placeShip(Position start, Position end, Player player) {
+    public boolean placeShip(Position start, Position end, AbstractPlayer player) {
         Ship shipToPlace = player.getShipsToPlace().peek();
         if (shipToPlace == null) return false;
 

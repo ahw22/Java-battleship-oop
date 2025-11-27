@@ -3,16 +3,16 @@ package org.example.game;
 import lombok.Getter;
 import org.example.model.board.Position;
 import org.example.model.ship.Ship;
-import org.example.player.Player;
+import org.example.player.AbstractPlayer;
 
 @Getter
 public class GameContext {
-    private final Player player1;
-    private final Player player2;
-    private Player currentPlayer;
-    private Player opponent;
+    private final AbstractPlayer player1;
+    private final AbstractPlayer player2;
+    private AbstractPlayer currentPlayer;
+    private AbstractPlayer opponent;
 
-    public GameContext(Player player1, Player player2) {
+    public GameContext(AbstractPlayer player1, AbstractPlayer player2) {
         this.player1 = player1;
         this.player2 = player2;
         this.currentPlayer = player1;
@@ -33,7 +33,7 @@ public class GameContext {
     }
 
     public void nextTurn() {
-        Player temp = currentPlayer;
+        AbstractPlayer temp = currentPlayer;
         currentPlayer = opponent;
         opponent = temp;
         System.out.println("\nIt's " + currentPlayer.getName() + "'s turn!\n");
