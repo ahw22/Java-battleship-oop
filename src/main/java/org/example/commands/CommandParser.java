@@ -1,8 +1,11 @@
 package org.example.commands;
 
+import lombok.NoArgsConstructor;
 import org.example.model.board.Position;
 
+@NoArgsConstructor
 public class CommandParser {
+
     public Command parse(String input) {
         if (input == null) return new UnknownCommand(input);
         String[] args = input.trim().split("\\s+");

@@ -3,6 +3,7 @@ package org.example;
 import org.example.commands.CommandParser;
 import org.example.game.GameContext;
 import org.example.game.GameRunner;
+import org.example.input.TestInputHandler;
 import org.example.player.Player;
 import org.example.player.init.PresetInit;
 import org.junit.jupiter.api.Test;
@@ -19,47 +20,49 @@ class MainTest {
     void testFullGame() {
         String input = String.join("\n",
                 "fire B1",
-                "fire A0",
                 "fire C1",
-                "fire A1",
                 "fire D1",
-                "fire A2",
                 "fire E1",
-                "fire A3",
                 "fire F1",
-                "fire A4",
                 "fire B2",
-                "fire A5",
                 "fire C2",
-                "fire A6",
                 "fire D2",
-                "fire A7",
                 "fire E2",
-                "fire A8",
                 "fire B3",
-                "fire A9",
                 "fire C3",
-                "fire B0",
                 "fire D3",
-                "fire C0",
                 "fire B4",
-                "fire D0",
                 "fire C4"
         );
+        String input2 = String.join("\n",
+                "fire A0",
+                "fire A1",
+                "fire A2",
+                "fire A3",
+                "fire A4",
+                "fire A5",
+                "fire A6",
+                "fire A7",
+                "fire A8",
+                "fire A9",
+                "fire B0",
+                "fire C0",
+                "fire D0"
+                );
 
-        ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
+
         ByteArrayOutputStream outBytes = new ByteArrayOutputStream();
         PrintStream out = new PrintStream(outBytes);
 
-        Player p1 = new Player(new PresetInit(), "Player");
-        Player p2 = new Player(new PresetInit(), "CPU");
+        Player p1 = new Player(new PresetInit(), new TestInputHandler(input), "Player");
+        Player p2 = new Player(new PresetInit(), new TestInputHandler(input2), "CPU");
         p1.setTargetBoard(p2.getOwnBoard());
         p2.setTargetBoard(p1.getOwnBoard());
 
         GameContext ctx = new GameContext(p1, p2);
         CommandParser commandParser = new CommandParser();
 
-        GameRunner runner = new GameRunner(in, out);
+        GameRunner runner = new GameRunner(out);
         runner.run(ctx, commandParser);
 
         // Now inspect output
