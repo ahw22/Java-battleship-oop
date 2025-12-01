@@ -1,17 +1,23 @@
 package org.example.commands;
 
+import lombok.Getter;
 import org.example.game.GameContext;
 
 public class HelpCommand implements Command{
+    private final String key = "help";
+    private final int argsCount = 1;
+    @Getter
+    private final String helpText = "help:\t used to show this list of commands.";
+
     @Override
-    public void execute(GameContext context) {
-        System.out.println("""
-                The following commands are available:
-                help: used to show this list of commands.
-                fire: used to fire at enemy board. Example: fire B3
-                show: used to show your board.
-                place: used when placing ships before the game. Choose start and endpoint of your ship. Example: place A3 C6
-                quit: Exits the game.
-                """);;
+    public boolean matches(String keyword, String[] args) {
+        return key.matches(keyword) && args.length == argsCount;
+    }
+
+    @Override
+    public void execute(GameContext context, String[] args) {
+        CommandParser parser = new CommandParser();
+        context.printLine("The following commands are available: ");
+        parser.getCommandList().forEach(command -> context.printLine(command.getHelpText()));
     }
 }

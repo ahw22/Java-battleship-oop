@@ -1,12 +1,12 @@
 package org.example.input;
 
-import org.example.commands.Command;
 import org.example.commands.CommandParser;
+import org.example.commands.ParsedCommand;
 
 import java.io.ByteArrayInputStream;
 import java.util.Scanner;
 
-public class TestInputHandler implements InputHandler{
+public class TestInputHandler implements InputHandler {
     Scanner in;
     CommandParser parser;
 
@@ -16,7 +16,7 @@ public class TestInputHandler implements InputHandler{
     }
 
     @Override
-    public Command getNextCommand() {
+    public ParsedCommand getNextCommand() {
         return parser.parse(in.nextLine());
     }
 }

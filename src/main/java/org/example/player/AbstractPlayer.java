@@ -2,7 +2,7 @@ package org.example.player;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.example.commands.Command;
+import org.example.commands.ParsedCommand;
 import org.example.input.InputHandler;
 import org.example.model.board.Board;
 import org.example.model.ship.*;
@@ -37,5 +37,5 @@ public abstract class AbstractPlayer {
         return (int) numOfSunkShips;
     }
 
-    public abstract Command getNextCommand();
+    public abstract ParsedCommand getNextCommand();
 }

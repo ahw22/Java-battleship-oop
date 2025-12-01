@@ -1,7 +1,7 @@
 package org.example.input;
 
-import org.example.commands.Command;
 import org.example.commands.CommandParser;
+import org.example.commands.ParsedCommand;
 
 import java.util.Scanner;
 
@@ -10,8 +10,7 @@ public class ConsoleInputHandler implements InputHandler {
     private final CommandParser commandParser = new CommandParser();
 
     @Override
-    public Command getNextCommand() {
-        System.out.print("> ");
+    public ParsedCommand getNextCommand() {
         String input = scanner.nextLine();
         return commandParser.parse(input);
     }

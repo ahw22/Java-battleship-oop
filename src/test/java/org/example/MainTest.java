@@ -1,6 +1,5 @@
 package org.example;
 
-import org.example.commands.CommandParser;
 import org.example.game.GameContext;
 import org.example.game.GameRunner;
 import org.example.input.TestInputHandler;
@@ -8,11 +7,10 @@ import org.example.player.Player;
 import org.example.player.init.PresetInit;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MainTest {
 
@@ -48,7 +46,7 @@ class MainTest {
                 "fire B0",
                 "fire C0",
                 "fire D0"
-                );
+        );
 
 
         ByteArrayOutputStream outBytes = new ByteArrayOutputStream();
@@ -59,11 +57,10 @@ class MainTest {
         p1.setTargetBoard(p2.getOwnBoard());
         p2.setTargetBoard(p1.getOwnBoard());
 
-        GameContext ctx = new GameContext(p1, p2);
-        CommandParser commandParser = new CommandParser();
+        GameContext ctx = new GameContext(p1, p2, out);
 
         GameRunner runner = new GameRunner(out);
-        runner.run(ctx, commandParser);
+        runner.run(ctx);
 
         // Now inspect output
         String output = outBytes.toString();

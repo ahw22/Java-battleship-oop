@@ -1,7 +1,6 @@
 package org.example.game;
 
-import org.example.commands.Command;
-import org.example.commands.CommandParser;
+import org.example.commands.ParsedCommand;
 
 import java.io.PrintStream;
 
@@ -12,17 +11,17 @@ public class GameRunner {
         this.out = out;
     }
 
-    public void run(GameContext context, CommandParser commandParser) {
+    public void run(GameContext context) {
         while(true) {
             out.print(context.getCurrentPlayer().getName() + "> ");
-            Command cmd = context.getCurrentPlayer().getNextCommand();
+            ParsedCommand cmd = context.getCurrentPlayer().getNextCommand();
 
             if (cmd == null) {
-                System.out.println("Unknown command: Type 'help' to see the available options");
+                out.println("Unknown command: Type 'help' to see the available options");
                 continue;
             }
 
-            cmd.execute(context);
+            cmd.command().execute(context, cmd.args());
 
             if (context.isGameOver()) {
                 context.gameOver();

@@ -1,28 +1,36 @@
 package org.example.commands;
 
-import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.example.game.GameContext;
 import org.example.model.board.Position;
 
-@AllArgsConstructor
+@NoArgsConstructor
 public class FireCommand implements Command {
-    private final Position target;
+    private final String key = "fire";
+    private final int argsCount = 2;
+    @Getter
+    private final String helpText = "fire:\t used to fire at enemy board. Example: fire B3";
 
     @Override
-    public void execute(GameContext context) {
-        boolean hit;
-        try {
-            hit = context.fireAt(target);
-        } catch (IllegalStateException e) {
-            System.out.println(e.getMessage());
-            return;
-        }
-        System.out.println(hit ? "Hit at " + target + "!" : "Miss at " + target + ".");
-        if (context.isGameOver()) {
-            context.gameOver();
-            return;
-        }
-        context.nextTurn();
+    public boolean matches(String keyword, String[] args) {
+        return key.matches(keyword) && args.length == argsCount;
     }
 
+    @Override
+    public void execute(GameContext context, String[] args) {
+        boolean hit;
+        try {
+            Position target = context.convertStringToPosition(args[1]);
+            hit = context.fireAt(target);
+            System.out.println(hit ? "Hit at " + target + "!" : "Miss at " + target + ".");
+            if (context.isGameOver()) {
+                context.gameOver();
+                return;
+            }
+            context.nextTurn();
+        } catch (IllegalStateException | IllegalArgumentException e) {
+            context.printLine(e.getMessage());
+        }
+    }
 }

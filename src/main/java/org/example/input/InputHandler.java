@@ -1,8 +1,8 @@
 package org.example.input;
 
-import org.example.commands.Command;
+import org.example.commands.ParsedCommand;
 
 public interface InputHandler {
 
-    Command getNextCommand();
+    ParsedCommand getNextCommand();
 }
