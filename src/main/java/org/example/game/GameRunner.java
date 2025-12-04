@@ -12,6 +12,9 @@ public class GameRunner {
     }
 
     public void run(GameContext context) {
+        context.printLine("Welcome to Battleship!");
+        context.printLine("Type 'help' for commands.");
+        context.showTarget();
         while(true) {
             out.print(context.getCurrentPlayer().getName() + "> ");
             ParsedCommand cmd = context.getCurrentPlayer().getNextCommand();

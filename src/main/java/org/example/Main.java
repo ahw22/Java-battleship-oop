@@ -18,11 +18,6 @@ public class Main {
         player2.setTargetBoard(player1.getOwnBoard());
 
         GameContext context = new GameContext(player1, player2, System.out);
-
-        System.out.println("Welcome to Battleship!");
-        System.out.println("Type 'help' for commands.");
-        context.showTarget();
-
         GameRunner runner = new GameRunner(System.out);
         runner.run(context);
     }
