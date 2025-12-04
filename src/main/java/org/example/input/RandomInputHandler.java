@@ -10,6 +10,6 @@ public class RandomInputHandler implements InputHandler{
 
     @Override
     public ParsedCommand getNextCommand() {
-        return parser.parse("fire " + new Position().toString());
+        return parser.parse("fire " + new Position());
     }
 }
