@@ -3,15 +3,9 @@ package org.example;
 import org.example.game.GameContext;
 import org.example.game.GameRunner;
 import org.example.input.RandomInputHandler;
-import org.example.input.TestInputHandler;
 import org.example.player.Player;
 import org.example.player.init.PresetInit;
 import org.junit.jupiter.api.Test;
-
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RandomTest {
 
