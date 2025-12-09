@@ -5,7 +5,7 @@ import org.example.commands.ParsedCommand;
 import org.example.model.board.Position;
 
 public class RandomInputHandler implements InputHandler{
-    CommandParser parser = new CommandParser();
+    private final CommandParser parser = new CommandParser();
 
 
     @Override

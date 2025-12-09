@@ -7,8 +7,8 @@ import java.io.ByteArrayInputStream;
 import java.util.Scanner;
 
 public class TestInputHandler implements InputHandler {
-    Scanner in;
-    CommandParser parser;
+    private final Scanner in;
+    private final CommandParser parser;
 
     public TestInputHandler(String input) {
         this.in = new Scanner(new ByteArrayInputStream(input.getBytes()));
