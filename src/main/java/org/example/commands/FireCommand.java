@@ -1,16 +1,15 @@
 package org.example.commands;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.example.game.GameContext;
 import org.example.model.board.Position;
 
-@NoArgsConstructor
-public class FireCommand implements Command {
-    private final String key = "fire";
-    private final int argsCount = 2;
-    @Getter
-    private final String helpText = "fire:\t used to fire at enemy board. Example: fire B3";
+public class FireCommand extends AbstractCommand {
+
+    public FireCommand() {
+        this.key = "fire";
+        this.argsCount = 2;
+        this.helpText = "fire:\t used to fire at enemy board. Example: fire B3";
+    }
 
     @Override
     public boolean matches(String keyword, String[] args) {
@@ -23,7 +22,7 @@ public class FireCommand implements Command {
         try {
             Position target = context.convertStringToPosition(args[1]);
             hit = context.fireAt(target);
-            System.out.println(hit ? "Hit at " + target + "!" : "Miss at " + target + ".");
+            context.printLine(hit ? "Hit at " + target + "!" : "Miss at " + target + ".");
             if (context.isGameOver()) {
                 context.gameOver();
                 return;

@@ -1,13 +1,14 @@
 package org.example.commands;
 
-import lombok.Getter;
 import org.example.game.GameContext;
 
-public class HelpCommand implements Command{
-    private final String key = "help";
-    private final int argsCount = 1;
-    @Getter
-    private final String helpText = "help:\t used to show this list of commands.";
+public class HelpCommand extends AbstractCommand {
+
+    public HelpCommand() {
+        this.key = "help";
+        this.argsCount = 1;
+        this.helpText = "help:\t used to show this list of commands.";
+    }
 
     @Override
     public boolean matches(String keyword, String[] args) {

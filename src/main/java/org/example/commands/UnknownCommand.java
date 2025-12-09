@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import org.example.game.GameContext;
 
 @AllArgsConstructor
-public class UnknownCommand implements Command {
+public class UnknownCommand extends AbstractCommand {
     private final String input;
 
     @Override
