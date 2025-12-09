@@ -5,14 +5,12 @@ import org.example.game.GameContext;
 public class HelpCommand extends AbstractCommand {
 
     public HelpCommand() {
-        this.key = "help";
-        this.argsCount = 1;
-        this.helpText = "help:\t used to show this list of commands.";
+        super("help", 1, "help:\t used to show this list of commands.");
     }
 
     @Override
     public boolean matches(String keyword, String[] args) {
-        return key.matches(keyword) && args.length == argsCount;
+        return getKey().matches(keyword) && args.length == getArgsCount();
     }
 
     @Override

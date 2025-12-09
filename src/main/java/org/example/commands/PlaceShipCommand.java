@@ -6,13 +6,11 @@ import org.example.model.board.Position;
 public class PlaceShipCommand extends AbstractCommand {
 
     public PlaceShipCommand() {
-        this.key = "place";
-        this.argsCount = 3;
-        this.helpText = "place:\t used when placing ships before the game. Choose start and endpoint of your ship. Example: place A3 C6";
+        super("place", 3, "place:\t used when placing ships before the game. Choose start and endpoint of your ship. Example: place A3 C6");
     }
 
     public boolean matches(String keyword, String[] args) {
-        return key.matches(keyword) && args.length == argsCount;
+        return getKey().matches(keyword) && args.length == getArgsCount();
     }
 
     @Override
@@ -28,10 +26,5 @@ public class PlaceShipCommand extends AbstractCommand {
         } catch (IllegalArgumentException e) {
             context.printLine(e.getMessage());
         }
-    }
-
-    @Override
-    public String getHelpText() {
-        return helpText;
     }
 }

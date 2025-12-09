@@ -5,14 +5,12 @@ import org.example.game.GameContext;
 public class QuitCommand extends AbstractCommand {
 
     public QuitCommand() {
-        this.key = "quit";
-        this.argsCount = 1;
-        this.helpText = "quit:\t exits the game.";
+        super("quit", 1, "quit:\t exits the game.");
     }
 
     @Override
     public boolean matches(String keyword, String[] args) {
-        return key.matches(keyword) && args.length == argsCount;
+        return getKey().matches(keyword) && args.length == getArgsCount();
     }
 
     @Override

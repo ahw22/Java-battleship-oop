@@ -6,14 +6,12 @@ import org.example.model.board.Position;
 public class FireCommand extends AbstractCommand {
 
     public FireCommand() {
-        this.key = "fire";
-        this.argsCount = 2;
-        this.helpText = "fire:\t used to fire at enemy board. Example: fire B3";
+        super("fire", 2, "fire:\t used to fire at enemy board. Example: fire B3");
     }
 
     @Override
     public boolean matches(String keyword, String[] args) {
-        return key.matches(keyword) && args.length == argsCount;
+        return getKey().matches(keyword) && args.length == getArgsCount();
     }
 
     @Override

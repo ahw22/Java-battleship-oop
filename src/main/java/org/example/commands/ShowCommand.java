@@ -5,14 +5,12 @@ import org.example.game.GameContext;
 public class ShowCommand extends AbstractCommand {
 
     public ShowCommand() {
-        this.key = "show";
-        this.argsCount = 1;
-        this.helpText = "show:\t used to show your board.";
+        super("show", 1, "show:\t used to show your board.");
     }
 
     @Override
     public boolean matches(String keyword, String[] args) {
-        return key.matches(keyword) && args.length == argsCount;
+        return getKey().matches(keyword) && args.length == getArgsCount();
     }
 
     @Override

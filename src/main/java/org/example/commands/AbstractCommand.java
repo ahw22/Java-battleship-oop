@@ -4,12 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
+@Getter
 public abstract class AbstractCommand implements Command {
-    protected String key;
-    protected int argsCount;
-    @Getter
-    protected String helpText;
+    private final String key;
+    private final int argsCount;
+    private final String helpText;
 
-    protected AbstractCommand() {
-    }
 }
