@@ -27,7 +27,7 @@ public class GameContext {
         boolean hit = opponent.getOwnBoard().fire(coord);
         if (hit) {
             Ship damagedShip = opponent.getOwnBoard().getFieldFromPosition(coord).getShip();
-            if (damagedShip.getHP() <= 0) System.out.printf("You sunk your opponents " + damagedShip.getName() + "!\n");
+            if (damagedShip.getHP() <= 0) printLine("You sunk your opponents " + damagedShip.getName() + "!\n");
         }
         return hit;
     }
@@ -40,18 +40,18 @@ public class GameContext {
         AbstractPlayer temp = currentPlayer;
         currentPlayer = opponent;
         opponent = temp;
-        System.out.println("\nIt's " + currentPlayer.getName() + "'s turn!\n");
+        printLine("\nIt's " + currentPlayer.getName() + "'s turn!\n");
         showTarget();
     }
 
     public void showTarget() {
-        System.out.println("\nYour Opponents Board:");
-        currentPlayer.getTargetBoard().printBoardWithCoordinates();
+        printLine("\nYour Opponents Board:");
+        printLine(currentPlayer.getTargetBoard().printBoardWithCoordinates());
     }
 
     public void showOwnBoard() {
-        System.out.println(currentPlayer.getName() + " - Your Fleet:");
-        currentPlayer.getOwnBoard().printBoard();
+        printLine(currentPlayer.getName() + " - Your Fleet:");
+        printLine(currentPlayer.getOwnBoard().printBoard());
     }
 
     public boolean isGameOver() {
@@ -60,12 +60,12 @@ public class GameContext {
 
     public void gameOver() {
         showTarget();
-        System.out.println(currentPlayer.getName() + " has won the game!");
+        printLine(currentPlayer.getName() + " has won the game!");
         System.exit(0);
     }
 
     public void quit() {
-        System.out.println("Thanks for playing Battleship!");
+        printLine("Thanks for playing Battleship!");
         System.exit(0);
     }
 

@@ -16,6 +16,8 @@ public class GameRunner {
         context.printLine("Type 'help' for commands.");
         context.showTarget();
         while(true) {
+            try {
+
             out.print(context.getCurrentPlayer().getName() + "> ");
             ParsedCommand cmd = context.getCurrentPlayer().getNextCommand();
 
@@ -29,6 +31,9 @@ public class GameRunner {
             if (context.isGameOver()) {
                 context.gameOver();
                 break;
+            }
+            } catch (Exception e) {
+                context.printLine("Error: " + e.getMessage());
             }
         }
     }

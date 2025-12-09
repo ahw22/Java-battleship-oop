@@ -25,36 +25,44 @@ public class Board {
         }
     }
 
-    public void printBoard() {
-        printInBetweenLine();
-        System.out.println("|   | A | B | C | D | E | F | G | H | I | J |");
-        printInBetweenLine();
+    public String printBoard() {
+        StringBuilder output = new StringBuilder();
+        output.append(printInBetweenLine());
+        output.append("|   | A | B | C | D | E | F | G | H | I | J |");
+        output.append(System.lineSeparator());
+        output.append(printInBetweenLine());
         int row = 0;
         for (Field[] rows : fields) {
-            System.out.print("| " + row + " ");
+            output.append("| ").append(row).append(" ");
             for (Field column : rows) {
-                System.out.print(column.draw());
+                output.append(column.draw());
             }
-            System.out.println("|");
-            printInBetweenLine();
+            output.append("|");
+            output.append(System.lineSeparator());
+            output.append(printInBetweenLine());
             row++;
         }
+        return output.toString();
     }
 
-    public void printBoardWithCoordinates() {
-        printInBetweenLine();
-        System.out.println("|   | A | B | C | D | E | F | G | H | I | J |");
-        printInBetweenLine();
+    public String printBoardWithCoordinates() {
+        StringBuilder output = new StringBuilder();
+        output.append(printInBetweenLine());
+        output.append("|   | A | B | C | D | E | F | G | H | I | J |");
+        output.append(System.lineSeparator());
+        output.append(printInBetweenLine());
         int row = 0;
         for (Field[] rows : fields) {
-            System.out.print("| " + row + " ");
+            output.append("| ").append(row).append(" ");
             for (Field column : rows) {
-                System.out.print(column.drawCoordinates());
+                output.append(column.drawCoordinates());
             }
-            System.out.println("|");
-            printInBetweenLine();
+            output.append("|");
+            output.append(System.lineSeparator());
+            output.append(printInBetweenLine());
             row++;
         }
+        return output.toString();
     }
 
     public boolean checkShipPosIsValid(Position pos) {
@@ -136,8 +144,8 @@ public class Board {
         return start.getColumn() == end.getColumn() || start.getRow() == end.getRow();
     }
 
-    private static void printInBetweenLine() {
-        System.out.println("+---+" + "---+".repeat(10));
+    private static String printInBetweenLine() {
+        return "+---+" + "---+".repeat(10) + System.lineSeparator();
     }
 
 }
