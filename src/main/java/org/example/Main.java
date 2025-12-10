@@ -4,6 +4,8 @@ import org.example.game.GameContext;
 import org.example.game.GameRunner;
 import org.example.input.ConsoleInputHandler;
 import org.example.input.RandomInputHandler;
+import org.example.output.ConsoleOutputController;
+import org.example.output.OutputControllerInterface;
 import org.example.player.AbstractPlayer;
 import org.example.player.Player;
 import org.example.player.RandomPlayer;
@@ -17,8 +19,10 @@ public class Main {
         player1.setTargetBoard(player2.getOwnBoard());
         player2.setTargetBoard(player1.getOwnBoard());
 
-        GameContext context = new GameContext(player1, player2, System.out);
-        GameRunner runner = new GameRunner(System.out);
+        OutputControllerInterface out = new ConsoleOutputController();
+
+        GameContext context = new GameContext(player1, player2, out);
+        GameRunner runner = new GameRunner();
         runner.run(context);
     }
 }

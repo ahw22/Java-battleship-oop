@@ -3,9 +3,8 @@ package org.example.game;
 import lombok.Getter;
 import org.example.model.board.Position;
 import org.example.model.ship.Ship;
+import org.example.output.OutputControllerInterface;
 import org.example.player.AbstractPlayer;
-
-import java.io.PrintStream;
 
 @Getter
 public class GameContext {
@@ -13,9 +12,9 @@ public class GameContext {
     private final AbstractPlayer player2;
     private AbstractPlayer currentPlayer;
     private AbstractPlayer opponent;
-    private final PrintStream out;
+    private final OutputControllerInterface out;
 
-    public GameContext(AbstractPlayer player1, AbstractPlayer player2, PrintStream out) {
+    public GameContext(AbstractPlayer player1, AbstractPlayer player2, OutputControllerInterface out) {
         this.player1 = player1;
         this.player2 = player2;
         this.currentPlayer = player1;
@@ -98,6 +97,10 @@ public class GameContext {
     }
 
     public void printLine(String message) {
-        out.println(message);
+        out.printLine(message);
+    }
+
+    public void print(String message) {
+        out.print(message);
     }
 }

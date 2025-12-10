@@ -1,15 +1,10 @@
 package org.example.game;
 
+import lombok.NoArgsConstructor;
 import org.example.commands.ParsedCommand;
 
-import java.io.PrintStream;
-
+@NoArgsConstructor
 public class GameRunner {
-    private final PrintStream out;
-
-    public GameRunner(PrintStream out) {
-        this.out = out;
-    }
 
     public void run(GameContext context) {
         context.printLine("Welcome to Battleship!");
@@ -18,11 +13,11 @@ public class GameRunner {
         while(true) {
             try {
 
-            out.print(context.getCurrentPlayer().getName() + "> ");
+            context.print(context.getCurrentPlayer().getName() + "> ");
             ParsedCommand cmd = context.getCurrentPlayer().getNextCommand();
 
             if (cmd == null) {
-                out.println("Unknown command: Type 'help' to see the available options");
+                context.printLine("Unknown command: Type 'help' to see the available options");
                 continue;
             }
 

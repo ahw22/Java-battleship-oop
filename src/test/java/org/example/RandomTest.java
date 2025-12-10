@@ -3,6 +3,8 @@ package org.example;
 import org.example.game.GameContext;
 import org.example.game.GameRunner;
 import org.example.input.RandomInputHandler;
+import org.example.output.ConsoleOutputController;
+import org.example.output.OutputControllerInterface;
 import org.example.player.Player;
 import org.example.player.init.PresetInit;
 import org.junit.jupiter.api.Test;
@@ -16,9 +18,11 @@ class RandomTest {
         p1.setTargetBoard(p2.getOwnBoard());
         p2.setTargetBoard(p1.getOwnBoard());
 
-        GameContext ctx = new GameContext(p1, p2, System.out);
+        OutputControllerInterface out = new ConsoleOutputController();
 
-        GameRunner runner = new GameRunner(System.out);
+        GameContext ctx = new GameContext(p1, p2, out);
+
+        GameRunner runner = new GameRunner();
         runner.run(ctx);
 
     }
