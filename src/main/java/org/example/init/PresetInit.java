@@ -1,4 +1,4 @@
-package org.example.player.init;
+package org.example.init;
 
 import org.example.model.board.Board;
 import org.example.model.board.Position;

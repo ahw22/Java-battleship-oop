@@ -2,7 +2,7 @@ package org.example.player;
 
 import org.example.commands.ParsedCommand;
 import org.example.input.InputHandler;
-import org.example.player.init.BoardInitializer;
+import org.example.init.BoardInitializer;
 
 public class RandomPlayer extends AbstractPlayer{
 

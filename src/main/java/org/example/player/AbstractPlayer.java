@@ -6,7 +6,7 @@ import org.example.commands.ParsedCommand;
 import org.example.input.InputHandler;
 import org.example.model.board.Board;
 import org.example.model.ship.*;
-import org.example.player.init.BoardInitializer;
+import org.example.init.BoardInitializer;
 
 import java.util.LinkedList;
 import java.util.List;

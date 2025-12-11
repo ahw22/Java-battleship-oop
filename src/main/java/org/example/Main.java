@@ -9,7 +9,7 @@ import org.example.output.OutputControllerInterface;
 import org.example.player.AbstractPlayer;
 import org.example.player.Player;
 import org.example.player.RandomPlayer;
-import org.example.player.init.PresetInit;
+import org.example.init.PresetInit;
 
 public class Main {
     public static void main(String[] args) {

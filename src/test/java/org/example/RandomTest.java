@@ -6,7 +6,7 @@ import org.example.input.RandomInputHandler;
 import org.example.output.ConsoleOutputController;
 import org.example.output.OutputControllerInterface;
 import org.example.player.Player;
-import org.example.player.init.PresetInit;
+import org.example.init.PresetInit;
 import org.junit.jupiter.api.Test;
 
 class RandomTest {
