@@ -2,6 +2,7 @@ package org.example.player;
 
 import lombok.Getter;
 import org.example.commands.ParsedCommand;
+import org.example.game.GameContext;
 import org.example.input.InputHandler;
 import org.example.init.BoardInitializer;
 
@@ -13,7 +14,9 @@ public class Player extends AbstractPlayer {
     }
 
     @Override
-    public ParsedCommand getNextCommand() {
+    public ParsedCommand getNextCommand(GameContext context) {
+        context.showTarget();
+        context.print(getName() + "> ");
         return inputHandler.getNextCommand();
     }
 

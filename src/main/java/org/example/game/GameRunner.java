@@ -8,25 +8,22 @@ public class GameRunner {
 
     public void run(GameContext context) {
         context.printLine("Welcome to Battleship!");
-        context.printLine("Type 'help' for commands.");
-        context.showTarget();
-        while(true) {
+        context.printLine("Type 'help' for a list of commands.");
+        while (true) {
             try {
+                ParsedCommand cmd = context.getNextCommand();
 
-            context.print(context.getCurrentPlayer().getName() + "> ");
-            ParsedCommand cmd = context.getCurrentPlayer().getNextCommand();
+                if (cmd == null) {
+                    context.printLine("Unknown command: Type 'help' to see the available options");
+                    continue;
+                }
 
-            if (cmd == null) {
-                context.printLine("Unknown command: Type 'help' to see the available options");
-                continue;
-            }
+                cmd.command().execute(context, cmd.args());
 
-            cmd.command().execute(context, cmd.args());
-
-            if (context.isGameOver()) {
-                context.gameOver();
-                break;
-            }
+                if (context.isGameOver()) {
+                    context.gameOver();
+                    break;
+                }
             } catch (Exception e) {
                 context.printLine("Error: " + e.getMessage());
             }

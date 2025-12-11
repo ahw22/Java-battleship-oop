@@ -1,6 +1,7 @@
 package org.example.game;
 
 import lombok.Getter;
+import org.example.commands.ParsedCommand;
 import org.example.model.board.Position;
 import org.example.model.ship.Ship;
 import org.example.output.OutputControllerInterface;
@@ -35,12 +36,15 @@ public class GameContext {
         return currentPlayer.getOwnBoard().placeShip(start, end, currentPlayer);
     }
 
+    public ParsedCommand getNextCommand() {
+        return currentPlayer.getNextCommand(this);
+    }
+
     public void nextTurn() {
         AbstractPlayer temp = currentPlayer;
         currentPlayer = opponent;
         opponent = temp;
         printLine("\nIt's " + currentPlayer.getName() + "'s turn!\n");
-        showTarget();
     }
 
     public void showTarget() {
