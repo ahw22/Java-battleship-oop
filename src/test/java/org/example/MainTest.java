@@ -56,5 +56,7 @@ class MainTest {
 
         GameRunner runner = new GameRunner();
         runner.run(ctx);
+
+
     }
 }

@@ -64,7 +64,6 @@ public class GameContext {
     public void gameOver() {
         showTarget();
         printLine(currentPlayer.getName() + " has won the game!");
-        System.exit(0);
     }
 
     public void quit() {
