@@ -11,7 +11,7 @@ public class CommandParser {
     private final List<Command> commandList = List.of(
             new HelpCommand(),
             new FireCommand(),
-            new PlaceShipCommand(),
+//            new PlaceShipCommand(),
             new ShowCommand(),
             new QuitCommand()
     );
