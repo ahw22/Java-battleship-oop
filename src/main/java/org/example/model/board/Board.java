@@ -100,6 +100,9 @@ public class Board {
             if (!checkShipPosIsValid(position)) {
                 throw new IllegalArgumentException("One of the fields is already occupied! Field: " + position);
             }
+        }
+
+        for (Position position : positionList) {
             Field target = getFieldFromPosition(position);
             target.placeShip(shipToPlace);
         }

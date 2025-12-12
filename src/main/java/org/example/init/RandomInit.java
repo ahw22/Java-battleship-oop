@@ -5,7 +5,6 @@ import org.example.model.board.Position;
 import org.example.model.ship.Ship;
 import org.example.player.AbstractPlayer;
 
-import java.util.List;
 import java.util.Random;
 
 public class RandomInit implements BoardInitializer {
