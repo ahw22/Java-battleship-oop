@@ -15,6 +15,7 @@ import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -36,11 +37,8 @@ class RandomInitTest {
 
     @Test
     void testInitBoard_placesAllShipsForStandardPlayer() {
-        shipsToPlace.add(new Carrier());
-        shipsToPlace.add(new Battleship());
-        shipsToPlace.add(new Destroyer());
-        shipsToPlace.add(new Submarine());
-        shipsToPlace.add(new Submarine());
+        List<Ship> shipsList = List.of(new Carrier(), new Battleship(), new Destroyer(), new Submarine(), new Submarine());
+        shipsToPlace.addAll(shipsList);
 
         Board board = randomInit.initBoard(mockPlayer);
 
@@ -54,7 +52,7 @@ class RandomInitTest {
                 }
             }
         }
-        assertEquals(1 * 5 + 1 * 4 + 1 * 3 + 2 * 2, occupiedFields, "Total occupied fields should match ship lengths.");
+        assertEquals(getTotalNumberOfExpectedFields(shipsList), occupiedFields, "Total occupied fields should match ship lengths.");
 
         // Verify no overlapping ships (implicitly checked by placeShip, but good to ensure board integrity)
         for (int i = 0; i < 10; i++) {
@@ -67,6 +65,10 @@ class RandomInitTest {
                 }
             }
         }
+    }
+
+    private static Integer getTotalNumberOfExpectedFields(List<Ship> shipsList) {
+        return shipsList.stream().map(Ship::getHP).reduce(Integer::sum).get();
     }
 
     @Test
@@ -85,20 +87,22 @@ class RandomInitTest {
 
     @RepeatedTest(100)
     void testInitBoard_placesManyShipsForStandardPlayer() {
-        shipsToPlace.add(new Carrier());
-        shipsToPlace.add(new Carrier());
-        shipsToPlace.add(new Carrier());
-        shipsToPlace.add(new Carrier());
-        shipsToPlace.add(new Carrier());
-        shipsToPlace.add(new Battleship());
-        shipsToPlace.add(new Battleship());
-        shipsToPlace.add(new Battleship());
-        shipsToPlace.add(new Battleship());
-        shipsToPlace.add(new Destroyer());
-        shipsToPlace.add(new Destroyer());
-        shipsToPlace.add(new Destroyer());
-        shipsToPlace.add(new Submarine());
-        shipsToPlace.add(new Submarine());
+        List<Ship> shipList = List.of(
+                new Carrier(),
+                new Carrier(),
+                new Carrier(),
+                new Carrier(),
+                new Battleship(),
+                new Battleship(),
+                new Battleship(),
+                new Battleship(),
+                new Destroyer(),
+                new Destroyer(),
+                new Destroyer(),
+                new Submarine(),
+                new Submarine()
+        );
+        shipsToPlace.addAll(shipList);
 
         Board board = randomInit.initBoard(mockPlayer);
 
@@ -114,7 +118,7 @@ class RandomInitTest {
         }
 
         System.out.println(board.printBoard());
-        assertEquals(5 * 5 + 4 * 4 + 3 * 3 + 2 * 2, occupiedFields, "Total occupied fields should match ship lengths.");
+        assertEquals(getTotalNumberOfExpectedFields(shipList), occupiedFields, "Total occupied fields should match ship lengths.");
 
         // Verify no overlapping ships (implicitly checked by placeShip, but good to ensure board integrity)
         for (int i = 0; i < 10; i++) {
