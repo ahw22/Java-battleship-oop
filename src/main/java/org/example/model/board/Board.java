@@ -71,7 +71,7 @@ public class Board {
     }
 
     public boolean fire(Position pos) {
-        Field targetField = fields[pos.getRow()][pos.getColumn()];
+        Field targetField = getFieldFromPosition(pos);
         if (targetField.getState() != State.NONE) {
             throw new IllegalStateException("Field has already been shot at!");
         }

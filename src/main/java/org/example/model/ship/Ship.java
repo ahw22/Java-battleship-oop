@@ -3,16 +3,14 @@ package org.example.model.ship;
 import lombok.Getter;
 
 public abstract class Ship {
-     @Getter
-     protected int HP;
-     @Getter
-     protected String name;
+    @Getter
+    protected int HP;
+    @Getter
+    protected String name;
 
     public void hit() {
-         HP--;
-     }
+        HP--;
+    }
 
-     public String draw() {
-          return "?";
-     }
+    public abstract String draw();
 }

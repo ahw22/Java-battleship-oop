@@ -27,6 +27,7 @@ class MainTest {
                 "fire C3",
                 "fire D3",
                 "fire B4",
+                "show",
                 "fire C4"
         );
         String input2 = String.join("\n",
@@ -42,6 +43,7 @@ class MainTest {
                 "fire A9",
                 "fire B0",
                 "fire C0",
+                "show",
                 "fire D0"
         );
 
