@@ -1,6 +1,6 @@
 package org.example.commands;
 
-import org.example.game.GameContext;
+import org.example.game.Game;
 
 public class ShowCommand extends AbstractCommand {
 
@@ -14,7 +14,7 @@ public class ShowCommand extends AbstractCommand {
     }
 
     @Override
-    public void execute(GameContext context, String[] args) {
+    public void execute(Game context, String[] args) {
         context.showOwnBoard();
     }
 }

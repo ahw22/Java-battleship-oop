@@ -1,7 +1,7 @@
 package org.example.player;
 
 import org.example.commands.ParsedCommand;
-import org.example.game.GameContext;
+import org.example.game.Game;
 import org.example.input.InputHandler;
 import org.example.init.BoardInitializer;
 
@@ -12,7 +12,7 @@ public class RandomPlayer extends AbstractPlayer{
     }
 
     @Override
-    public ParsedCommand getNextCommand(GameContext context) {
+    public ParsedCommand getNextCommand(Game context) {
         return inputHandler.getNextCommand();
     }
 }

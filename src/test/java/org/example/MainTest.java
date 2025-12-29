@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.game.GameContext;
+import org.example.game.Game;
 import org.example.game.GameRunner;
 import org.example.input.TestInputHandler;
 import org.example.output.ConsoleOutputController;
@@ -54,7 +54,7 @@ class MainTest {
 
         OutputControllerInterface out = new ConsoleOutputController();
 
-        GameContext ctx = new GameContext(p1, p2, out);
+        Game ctx = new Game(p1, p2, out);
 
         GameRunner runner = new GameRunner();
         runner.run(ctx);

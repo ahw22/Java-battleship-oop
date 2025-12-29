@@ -6,7 +6,7 @@ import org.example.commands.ParsedCommand;
 @NoArgsConstructor
 public class GameRunner {
 
-    public void run(GameContext context) {
+    public void run(Game context) {
         context.printLine("Welcome to Battleship!");
         context.printLine("Type 'help' for a list of commands.");
         while (true) {

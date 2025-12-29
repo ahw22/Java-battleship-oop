@@ -8,14 +8,15 @@ import org.example.output.OutputControllerInterface;
 import org.example.player.AbstractPlayer;
 
 @Getter
-public class GameContext {
+
+public class Game {
     private final AbstractPlayer player1;
     private final AbstractPlayer player2;
     private AbstractPlayer currentPlayer;
     private AbstractPlayer opponent;
     private final OutputControllerInterface out;
 
-    public GameContext(AbstractPlayer player1, AbstractPlayer player2, OutputControllerInterface out) {
+    public Game(AbstractPlayer player1, AbstractPlayer player2, OutputControllerInterface out) {
         this.player1 = player1;
         this.player2 = player2;
         this.currentPlayer = player1;

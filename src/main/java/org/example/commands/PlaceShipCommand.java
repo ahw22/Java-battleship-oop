@@ -1,6 +1,6 @@
 package org.example.commands;
 
-import org.example.game.GameContext;
+import org.example.game.Game;
 import org.example.model.board.Position;
 
 public class PlaceShipCommand extends AbstractCommand {
@@ -14,7 +14,7 @@ public class PlaceShipCommand extends AbstractCommand {
     }
 
     @Override
-    public void execute(GameContext context, String[] args) {
+    public void execute(Game context, String[] args) {
         try {
             Position start = context.convertStringToPosition(args[1]);
             Position end = context.convertStringToPosition(args[2]);

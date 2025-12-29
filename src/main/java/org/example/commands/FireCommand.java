@@ -1,6 +1,6 @@
 package org.example.commands;
 
-import org.example.game.GameContext;
+import org.example.game.Game;
 import org.example.model.board.Position;
 
 public class FireCommand extends AbstractCommand {
@@ -15,7 +15,7 @@ public class FireCommand extends AbstractCommand {
     }
 
     @Override
-    public void execute(GameContext context, String[] args) {
+    public void execute(Game context, String[] args) {
         boolean hit;
         try {
             Position target = context.convertStringToPosition(args[1]);

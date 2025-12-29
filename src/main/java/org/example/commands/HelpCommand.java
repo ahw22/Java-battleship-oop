@@ -1,6 +1,6 @@
 package org.example.commands;
 
-import org.example.game.GameContext;
+import org.example.game.Game;
 
 public class HelpCommand extends AbstractCommand {
 
@@ -14,7 +14,7 @@ public class HelpCommand extends AbstractCommand {
     }
 
     @Override
-    public void execute(GameContext context, String[] args) {
+    public void execute(Game context, String[] args) {
         CommandParser parser = new CommandParser();
         context.printLine("The following commands are available: ");
         parser.getCommandList().forEach(command -> context.printLine(command.getHelpText()));

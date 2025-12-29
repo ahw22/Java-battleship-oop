@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.game.GameContext;
+import org.example.game.Game;
 import org.example.game.GameRunner;
 import org.example.init.RandomInit;
 import org.example.input.ConsoleInputHandler;
@@ -10,7 +10,6 @@ import org.example.output.OutputControllerInterface;
 import org.example.player.AbstractPlayer;
 import org.example.player.Player;
 import org.example.player.RandomPlayer;
-import org.example.init.PresetInit;
 
 public class Main {
     public static void main(String[] args) {
@@ -22,7 +21,7 @@ public class Main {
 
         OutputControllerInterface out = new ConsoleOutputController();
 
-        GameContext context = new GameContext(player1, player2, out);
+        Game context = new Game(player1, player2, out);
         GameRunner runner = new GameRunner();
         runner.run(context);
     }

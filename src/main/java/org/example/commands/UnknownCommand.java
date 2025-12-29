@@ -1,6 +1,6 @@
 package org.example.commands;
 
-import org.example.game.GameContext;
+import org.example.game.Game;
 
 public class UnknownCommand extends AbstractCommand implements Command {
     private final String input;
@@ -16,7 +16,7 @@ public class UnknownCommand extends AbstractCommand implements Command {
     }
 
     @Override
-    public void execute(GameContext context, String[] args) {
+    public void execute(Game context, String[] args) {
         context.printLine("Command '" + input + "' is not a valid command. Use 'help' to see available commands.");
     }
 }

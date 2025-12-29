@@ -3,7 +3,7 @@ package org.example.player;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.commands.ParsedCommand;
-import org.example.game.GameContext;
+import org.example.game.Game;
 import org.example.input.InputHandler;
 import org.example.model.board.Board;
 import org.example.model.ship.*;
@@ -38,5 +38,5 @@ public abstract class AbstractPlayer {
         return (int) numOfSunkShips;
     }
 
-    public abstract ParsedCommand getNextCommand(GameContext context);
+    public abstract ParsedCommand getNextCommand(Game context);
 }
