@@ -24,9 +24,5 @@ public abstract class Ship {
         observers.add(observer);
     }
 
-    public void removeObserver(ShipObserver observer) {
-        observers.remove(observer);
-    }
-
     public abstract String draw();
 }

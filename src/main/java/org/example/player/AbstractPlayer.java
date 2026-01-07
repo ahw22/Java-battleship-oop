@@ -39,10 +39,6 @@ public abstract class AbstractPlayer implements ShipObserver {
        observers.add(observer);
     }
 
-    public void removeObserver(PlayerObserver observer) {
-        observers.remove(observer);
-    }
-
     @Override
     public void onShipHit(Ship ship) {
         observers.forEach(o -> o.onShipHit(ship));
