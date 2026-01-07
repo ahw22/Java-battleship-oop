@@ -6,31 +6,31 @@ import org.example.model.board.Position;
 import org.example.model.ship.Ship;
 import org.example.output.OutputControllerInterface;
 import org.example.player.AbstractPlayer;
+import org.example.player.PlayerObserver;
 
 @Getter
-
-public class Game {
+public class Game implements PlayerObserver {
     private final AbstractPlayer player1;
     private final AbstractPlayer player2;
     private AbstractPlayer currentPlayer;
     private AbstractPlayer opponent;
     private final OutputControllerInterface out;
+    private boolean isGameOver = false;
 
     public Game(AbstractPlayer player1, AbstractPlayer player2, OutputControllerInterface out) {
         this.player1 = player1;
         this.player2 = player2;
+        player1.addObserver(this);
+        player2.addObserver(this);
         this.currentPlayer = player1;
         this.opponent = player2;
         this.out = out;
     }
 
-    public boolean fireAt(Position coord) {
+    public void fireAt(Position coord) {
         boolean hit = opponent.getOwnBoard().fire(coord);
-        if (hit) {
-            Ship damagedShip = opponent.getOwnBoard().getFieldFromPosition(coord).getShip();
-            if (damagedShip.getHP() <= 0) printLine("You sunk your opponents " + damagedShip.getName() + "!\n");
-        }
-        return hit;
+        printLine(hit ? "Hit at " + coord + "!" : "Miss at " + coord + ".");
+        nextTurn();
     }
 
     public boolean placeShip(Position start, Position end) {
@@ -42,6 +42,9 @@ public class Game {
     }
 
     public void nextTurn() {
+        if (isGameOver) {
+            return;
+        }
         AbstractPlayer temp = currentPlayer;
         currentPlayer = opponent;
         opponent = temp;
@@ -58,11 +61,8 @@ public class Game {
         printLine(currentPlayer.getOwnBoard().printBoard());
     }
 
-    public boolean isGameOver() {
-        return opponent.getNumberOfSunkShips() == opponent.getShips().size();
-    }
-
     public void gameOver() {
+        isGameOver = true;
         showTarget();
         printLine(currentPlayer.getName() + " has won the game!");
     }
@@ -106,5 +106,19 @@ public class Game {
 
     public void print(String message) {
         out.print(message);
+    }
+
+    @Override
+    public void onShipHit(Ship ship) {
+    }
+
+    @Override
+    public void onShipSunk(Ship ship) {
+        printLine("You sunk your opponents " + ship.getName() + "!\n");
+    }
+
+    @Override
+    public void onAllShipsSunk(AbstractPlayer player) {
+        gameOver();
     }
 }

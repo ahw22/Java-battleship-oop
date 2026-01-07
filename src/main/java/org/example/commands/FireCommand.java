@@ -16,16 +16,9 @@ public class FireCommand extends AbstractCommand {
 
     @Override
     public void execute(Game context, String[] args) {
-        boolean hit;
         try {
             Position target = context.convertStringToPosition(args[1]);
-            hit = context.fireAt(target);
-            context.printLine(hit ? "Hit at " + target + "!" : "Miss at " + target + ".");
-            if (context.isGameOver()) {
-                context.gameOver();
-                return;
-            }
-            context.nextTurn();
+            context.fireAt(target);
         } catch (IllegalStateException | IllegalArgumentException e) {
             context.printLine(e.getMessage());
         }

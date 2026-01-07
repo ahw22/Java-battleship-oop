@@ -21,7 +21,6 @@ public class GameRunner {
                 cmd.command().execute(context, cmd.args());
 
                 if (context.isGameOver()) {
-                    context.gameOver();
                     break;
                 }
             } catch (Exception e) {
