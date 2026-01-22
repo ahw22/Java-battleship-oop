@@ -3,7 +3,7 @@ package org.example;
 import org.example.game.Game;
 import org.example.game.GameRunner;
 import org.example.input.TestInputHandler;
-import org.example.output.ConsoleOutputController;
+import org.example.output.BufferedOutputController;
 import org.example.output.OutputControllerInterface;
 import org.example.player.Player;
 import org.example.init.PresetInit;
@@ -52,11 +52,11 @@ class MainTest {
         p1.setTargetBoard(p2.getOwnBoard());
         p2.setTargetBoard(p1.getOwnBoard());
 
-        OutputControllerInterface out = new ConsoleOutputController();
+        OutputControllerInterface out = new BufferedOutputController();
 
         Game ctx = new Game(p1, p2, out);
 
-        GameRunner runner = new GameRunner();
+        GameRunner runner = new GameRunner(out);
         runner.run(ctx);
 
 

@@ -2,11 +2,16 @@ package org.example.game;
 
 import lombok.Getter;
 import org.example.commands.ParsedCommand;
+import org.example.event.Event;
+import org.example.event.GameEventListener;
 import org.example.model.board.Position;
 import org.example.model.ship.Ship;
 import org.example.output.OutputControllerInterface;
 import org.example.player.AbstractPlayer;
 import org.example.player.PlayerObserver;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 public class Game implements PlayerObserver {
@@ -14,7 +19,7 @@ public class Game implements PlayerObserver {
     private final AbstractPlayer player2;
     private AbstractPlayer currentPlayer;
     private AbstractPlayer opponent;
-    private final OutputControllerInterface out;
+    private final List<GameEventListener> listeners = new ArrayList<>();
     private boolean isGameOver = false;
 
     public Game(AbstractPlayer player1, AbstractPlayer player2, OutputControllerInterface out) {
@@ -24,12 +29,23 @@ public class Game implements PlayerObserver {
         player2.addObserver(this);
         this.currentPlayer = player1;
         this.opponent = player2;
-        this.out = out;
+        addListener(out);
+    }
+
+    public void addListener(GameEventListener listener) {
+        listeners.add(listener);
+    }
+
+    private void emit(Event.Type type, String message) {
+        Event event = new Event(type, message);
+        for (GameEventListener listener : listeners) {
+            listener.handleGameEvent(event);
+        }
     }
 
     public void fireAt(Position coord) {
         boolean hit = opponent.getOwnBoard().fire(coord);
-        printLine(hit ? "Hit at " + coord + "!" : "Miss at " + coord + ".");
+        emit(hit ? Event.Type.HIT : Event.Type.MISS, hit ? "Hit at " + coord + "!" : "Miss at " + coord + ".");
         nextTurn();
     }
 
@@ -48,27 +64,27 @@ public class Game implements PlayerObserver {
         AbstractPlayer temp = currentPlayer;
         currentPlayer = opponent;
         opponent = temp;
-        printLine("\nIt's " + currentPlayer.getName() + "'s turn!\n");
+        emit(Event.Type.INFO, "\nIt's " + currentPlayer.getName() + "'s turn!\n");
     }
 
     public void showTarget() {
-        printLine("\nYour Opponents Board:");
-        printLine(currentPlayer.getTargetBoard().printBoardWithCoordinates());
+        emit(Event.Type.INFO, "\nYour Opponents Board:");
+        emit(Event.Type.BOARD_VIEW, currentPlayer.getTargetBoard().printBoardWithCoordinates());
     }
 
     public void showOwnBoard() {
-        printLine(currentPlayer.getName() + " - Your Fleet:");
-        printLine(currentPlayer.getOwnBoard().printBoard());
+        emit(Event.Type.INFO, currentPlayer.getName() + " - Your Fleet:");
+        emit(Event.Type.BOARD_VIEW, currentPlayer.getOwnBoard().printBoard());
     }
 
     public void gameOver() {
         isGameOver = true;
-        showTarget();
-        printLine(currentPlayer.getName() + " has won the game!");
+//        showTarget();
+        emit(Event.Type.GAME_OVER, currentPlayer.getName() + " has won the game!");
     }
 
     public void quit() {
-        printLine("Thanks for playing Battleship!");
+        emit(Event.Type.INFO, "Thanks for playing Battleship!");
         System.exit(0);
     }
 
@@ -101,11 +117,11 @@ public class Game implements PlayerObserver {
     }
 
     public void printLine(String message) {
-        out.printLine(message);
+        emit(Event.Type.INFO, message);
     }
 
-    public void print(String message) {
-        out.print(message);
+    public void printNow(String message) {
+        emit(Event.Type.INPUT, message);
     }
 
     @Override
@@ -114,7 +130,7 @@ public class Game implements PlayerObserver {
 
     @Override
     public void onShipSunk(Ship ship) {
-        printLine("You sunk your opponents " + ship.getName() + "!\n");
+        emit(Event.Type.SUNK, "You sunk your opponents " + ship.getName() + "!\n");
     }
 
     @Override

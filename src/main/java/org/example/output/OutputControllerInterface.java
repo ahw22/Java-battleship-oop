@@ -1,6 +1,9 @@
 package org.example.output;
 
-public interface OutputControllerInterface {
+import org.example.event.GameEventListener;
+
+public interface OutputControllerInterface extends GameEventListener {
     void printLine(String string);
     void print(String string);
+    void flush();
 }

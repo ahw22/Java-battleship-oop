@@ -16,7 +16,7 @@ public class Player extends AbstractPlayer {
     @Override
     public ParsedCommand getNextCommand(Game context) {
         context.showTarget();
-        context.print(getName() + "> ");
+        context.printNow(getName() + "> ");
         return inputHandler.getNextCommand();
     }
 
