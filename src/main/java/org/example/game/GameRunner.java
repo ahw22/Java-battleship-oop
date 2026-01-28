@@ -8,33 +8,30 @@ import org.example.output.OutputControllerInterface;
 public class GameRunner {
     private OutputControllerInterface out;
 
-    public void run(Game context) {
-        context.printLine("Welcome to Battleship!");
-        context.printLine("Type 'help' for a list of commands.");
+    public void run(Game game) {
+        game.printLine("Welcome to Battleship!");
+        game.printLine("Type 'help' for a list of commands.");
         
         // Initial flush to show welcome message
-        if (out != null) out.flush();
+        out.flush();
 
-        while (true) {
+        while (!game.isGameOver()) {
             try {
-                ParsedCommand cmd = context.getNextCommand();
+                ParsedCommand cmd = game.getNextCommand();
 
                 if (cmd == null) {
-                    context.printError("Unknown command: Type 'help' to see the available options");
-                    if (out != null) out.flush();
+                    game.printError("Unknown command: Type 'help' to see the available options");
+                    out.flush();
                     continue;
                 }
 
-                cmd.command().execute(context, cmd.args());
+                cmd.command().execute(game, cmd.args());
 
-                if (out != null) out.flush();
+                out.flush();
 
-                if (context.isGameOver()) {
-                    break;
-                }
             } catch (Exception e) {
-                context.printError("Error: " + e.getMessage());
-                if (out != null) out.flush();
+                game.printError("Error: " + e.getMessage());
+                out.flush();
             }
         }
     }
