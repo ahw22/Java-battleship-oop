@@ -124,6 +124,10 @@ public class Game implements PlayerObserver {
         emit(Event.Type.INPUT, message);
     }
 
+    public void printError(String message) {
+        emit(Event.Type.ERROR, message);
+    }
+
     @Override
     public void onShipHit(Ship ship) {
     }

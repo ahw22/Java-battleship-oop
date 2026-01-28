@@ -1,11 +1,9 @@
 package org.example.game;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.example.commands.ParsedCommand;
 import org.example.output.OutputControllerInterface;
 
-@NoArgsConstructor
 @AllArgsConstructor
 public class GameRunner {
     private OutputControllerInterface out;
@@ -22,7 +20,7 @@ public class GameRunner {
                 ParsedCommand cmd = context.getNextCommand();
 
                 if (cmd == null) {
-                    context.printLine("Unknown command: Type 'help' to see the available options");
+                    context.printError("Unknown command: Type 'help' to see the available options");
                     if (out != null) out.flush();
                     continue;
                 }
@@ -35,7 +33,7 @@ public class GameRunner {
                     break;
                 }
             } catch (Exception e) {
-                context.printLine("Error: " + e.getMessage());
+                context.printError("Error: " + e.getMessage());
                 if (out != null) out.flush();
             }
         }
