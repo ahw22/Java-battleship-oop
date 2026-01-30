@@ -69,8 +69,8 @@ public class Game implements PlayerObserver {
     }
 
     public void showTarget() {
-        emit(Event.Type.INFO, "\nYour Opponents Board:");
-        emit(Event.Type.BOARD_VIEW, currentPlayer.getTargetBoard().printBoardWithCoordinates());
+        emit(Event.Type.INPUT, "\nYour Opponents Board:\n");
+        emit(Event.Type.INPUT, currentPlayer.getTargetBoard().printBoardWithCoordinates());
     }
 
     public void showOwnBoard() {
@@ -78,9 +78,15 @@ public class Game implements PlayerObserver {
         emit(Event.Type.BOARD_VIEW, currentPlayer.getOwnBoard().printBoard());
     }
 
+    private void showTargetEndOfGame() {
+        emit(Event.Type.INFO, "\nYour Opponents Board:\n");
+        emit(Event.Type.BOARD_VIEW, currentPlayer.getTargetBoard().printBoardWithCoordinates());
+    }
+
     public void gameOver() {
         isGameOver = true;
         emit(Event.Type.GAME_OVER, currentPlayer.getName() + " has won the game!");
+        showTargetEndOfGame();
     }
 
     public void quit() {
