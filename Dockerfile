@@ -15,4 +15,4 @@ RUN mvn clean install -DskipTests
 
 # Define the command to run the application
 # The JAR file name is Java-battleship-oop-1.0-SNAPSHOT.jar as defined in pom.xml
-CMD ["java", "-jar", "target/Java-battleship-oop-1.0-SNAPSHOT.jar"]
+CMD ["java", "-jar", "target/Java-battleship-oop-1.0.0.jar"]
