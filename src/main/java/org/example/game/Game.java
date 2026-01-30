@@ -1,6 +1,7 @@
 package org.example.game;
 
 import lombok.Getter;
+import lombok.NonNull;
 import org.example.commands.ParsedCommand;
 import org.example.event.Event;
 import org.example.event.GameEventListener;
@@ -32,11 +33,11 @@ public class Game implements PlayerObserver {
         addListener(out);
     }
 
-    public void addListener(GameEventListener listener) {
+    public void addListener(@NonNull GameEventListener listener) {
         listeners.add(listener);
     }
 
-    private void emit(Event.Type type, String message) {
+    public void emit(Event.Type type, String message) {
         Event event = new Event(type, message);
         for (GameEventListener listener : listeners) {
             listener.handleGameEvent(event);
@@ -79,13 +80,12 @@ public class Game implements PlayerObserver {
 
     public void gameOver() {
         isGameOver = true;
-//        showTarget();
         emit(Event.Type.GAME_OVER, currentPlayer.getName() + " has won the game!");
     }
 
     public void quit() {
-        emit(Event.Type.INFO, "Thanks for playing Battleship!");
-        System.exit(0);
+        emit(Event.Type.GAME_OVER, "Thanks for playing Battleship!");
+        isGameOver = true;
     }
 
     public Position convertStringToPosition(String input) {
